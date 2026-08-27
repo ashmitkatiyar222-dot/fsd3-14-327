@@ -1,0 +1,2508 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>御面坊 YÙ NOODLES | Imperial Craft Noodle Co.</title>
+  <meta name="description"
+    content="Artisan Chinese hand-pulled noodles, 18-hour slow-simmered imperial broth, and flash-fired Sichuan aromatics. Taste the street-food heritage in modern luxury packaging.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%238B0000' stroke='%23D4AF37' stroke-width='4'/><text x='50' y='66' font-size='48' font-family='serif' fill='%23FAF6EE' text-anchor='middle' font-weight='bold'>御</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Zhi+Mang+Xing&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            cinnabar: {
+              DEFAULT: '#9E1A1A',
+              light: '#C81E1E',
+              dark: '#771D1D',
+              deep: '#5C1212',
+            },
+            imperial: {
+              red: '#8B0000',
+              deepRed: '#5E0B0B',
+              crimson: '#A6192E',
+              blood: '#3D0000',
+              gold: '#D4AF37',
+              lightGold: '#F3E5AB',
+              darkGold: '#997A15',
+              brass: '#B58D3D',
+            },
+            obsidian: {
+              light: '#242026',
+              DEFAULT: '#141216',
+              dark: '#0C0A0D',
+              deep: '#060507',
+            },
+            ivory: {
+              DEFAULT: '#FAF6EE',
+              warm: '#F4ECE1',
+              parchment: '#EBE0CE',
+              aged: '#DECDB5',
+            }
+          },
+          fontFamily: {
+            'serif-sc': ['"Noto Serif SC"', 'serif'],
+            'sans-sc': ['"Noto Sans SC"', 'sans-serif'],
+            'calligraphy': ['"Ma Shan Zheng"', 'cursive'],
+            'cursive': ['"Zhi Mang Xing"', 'cursive'],
+            'heading': ['"Playfair Display"', 'serif'],
+            'sans': ['"DM Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'lacquer': '0 8px 24px -4px rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 4px 0 rgba(0, 0, 0, 0.5)',
+            'lacquer-red': '0 10px 30px -5px rgba(166, 25, 46, 0.45), inset 0 1px 2px 0 rgba(255, 200, 200, 0.4), inset 0 -3px 6px 0 rgba(60, 0, 0, 0.7)',
+            'gold-glow': '0 0 25px 2px rgba(212, 175, 55, 0.35)',
+            'paper-emboss': '0 20px 40px -15px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.8)',
+            'seal-stamp': 'inset 0 2px 4px rgba(0,0,0,0.4), 0 3px 8px rgba(180, 20, 20, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Luxury Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0C0A0D;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #5E0B0B;
+      border-radius: 4px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #8B0000;
+    }
+
+    /* Skeuomorphic Xuan Paper Texture */
+    .xuan-paper-texture {
+      background-color: #FAF5EB;
+      background-image:
+        radial-gradient(#d4af37 0.65px, transparent 0.65px),
+        radial-gradient(#b89326 0.65px, #FAF5EB 0.65px);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
+      box-shadow: inset 0 0 60px rgba(184, 147, 38, 0.08);
+    }
+
+    .aged-parchment-texture {
+      background-color: #F3EBD9;
+      background-image:
+        radial-gradient(rgba(139, 0, 0, 0.04) 1px, transparent 1px),
+        radial-gradient(rgba(212, 175, 55, 0.06) 1px, #F3EBD9 1px);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+    }
+
+    /* Gold Foil Text */
+    .gold-foil-text {
+      background: linear-gradient(135deg,
+          #F3E5AB 0%,
+          #D4AF37 40%,
+          #AA7C11 70%,
+          #F3E5AB 100%);
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Skeuomorphic Tactile Buttons */
+    .btn-lacquer-red {
+      background: linear-gradient(180deg, #A81C1C 0%, #780C0C 100%);
+      border: 1px solid rgba(255, 180, 180, 0.35);
+      box-shadow:
+        0 6px 0 #3D0404,
+        0 12px 20px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(0);
+    }
+
+    .btn-lacquer-red:hover {
+      background: linear-gradient(180deg, #BA2222 0%, #880E0E 100%);
+      box-shadow:
+        0 6px 0 #3D0404,
+        0 14px 24px rgba(168, 28, 28, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-lacquer-red:active {
+      transform: translateY(4px);
+      box-shadow:
+        0 2px 0 #3D0404,
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-tactile-gold {
+      background: linear-gradient(180deg, #E5C453 0%, #B89326 100%);
+      color: #1A1204;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow:
+        0 5px 0 #6B510C,
+        0 10px 18px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.7);
+      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-tactile-gold:hover {
+      background: linear-gradient(180deg, #F3DA7A 0%, #C8A232 100%);
+      transform: translateY(-2px);
+      box-shadow:
+        0 5px 0 #6B510C,
+        0 12px 22px rgba(212, 175, 55, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .btn-tactile-gold:active {
+      transform: translateY(3px);
+      box-shadow:
+        0 2px 0 #6B510C,
+        0 3px 8px rgba(0, 0, 0, 0.25),
+        inset 0 2px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Cinnabar Seal Stamp */
+    .chinese-seal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #8B0000;
+      border: 2px solid #5C0000;
+      color: #FAF5EB;
+      border-radius: 6px;
+      box-shadow:
+        inset 0 0 5px rgba(0, 0, 0, 0.6),
+        0 2px 6px rgba(139, 0, 0, 0.4);
+      font-family: 'Ma Shan Zheng', cursive;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chinese-seal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, transparent 35%, rgba(60, 0, 0, 0.4) 100%);
+      pointer-events: none;
+    }
+
+    /* Vertical Typography */
+    .vertical-rl {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 0.25em;
+    }
+
+    /* Chinese Fretwork Border */
+    .fretwork-border {
+      background-image: repeating-linear-gradient(90deg,
+          #D4AF37,
+          #D4AF37 6px,
+          #8B0000 6px,
+          #8B0000 12px);
+      height: 4px;
+    }
+
+    /* Floating Keyframes */
+    @keyframes floatSlow {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(2deg);
+      }
+    }
+
+    @keyframes floatReverse {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(10px) rotate(-2deg);
+      }
+    }
+
+    .animate-float-1 {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+
+    .animate-float-2 {
+      animation: floatReverse 7s ease-in-out infinite;
+    }
+
+    .animate-float-3 {
+      animation: floatSlow 5s ease-in-out infinite 1s;
+    }
+
+    /* Shimmer Effect */
+    @keyframes goldShimmer {
+      0% {
+        transform: translateX(-100%) rotate(45deg);
+      }
+
+      100% {
+        transform: translateX(200%) rotate(45deg);
+      }
+    }
+
+    .shimmer-active::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+      transform: translateX(-100%) rotate(45deg);
+      animation: goldShimmer 4s infinite;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-obsidian-deep text-ivory antialiased selection:bg-imperial-crimson selection:text-ivory overflow-x-hidden font-sans">
+
+  <!-- ========================================================================= -->
+  <!-- 1. FLOATING IMPERIAL NAVIGATION BAR -->
+  <!-- ========================================================================= -->
+  <header id="main-nav"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6 lg:px-8 pointer-events-none">
+    <div
+      class="max-w-7xl mx-auto pointer-events-auto rounded-2xl bg-obsidian/85 backdrop-blur-xl border border-imperial-gold/25 shadow-2xl py-3 px-4 sm:px-6 flex items-center justify-between">
+
+      <!-- Brand Logo with Cinnabar Seal -->
+      <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); soundFx.playBambooClick(); return false;"
+        class="flex items-center gap-3 group focus:outline-none">
+        <div
+          class="chinese-seal w-10 h-10 text-xl font-bold text-ivory flex items-center justify-center rounded-lg shadow-seal-stamp group-hover:scale-105 transition-transform">
+          御
+        </div>
+        <div class="flex flex-col text-left">
+          <span
+            class="font-calligraphy text-2xl tracking-wider text-ivory group-hover:text-imperial-lightGold transition-colors leading-none">
+            御面坊
+          </span>
+          <span class="font-heading text-[10px] tracking-[0.25em] text-imperial-gold uppercase font-semibold">
+            YÙ NOODLES · 1898
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#flavours" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.flavours">Flavours</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#heritage" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.heritage">Heritage</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#product-showcase" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.packaging">Packaging</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#ingredients" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.ingredients">Ingredients</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#cooking-ritual" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.ritual">3-Min Ritual</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+        <a href="#brand-story" onclick="soundFx.playBambooClick()"
+          class="text-xs uppercase tracking-[0.18em] font-medium text-ivory/80 hover:text-imperial-lightGold transition-colors relative py-1 group">
+          <span data-i18n="nav.brandStory">Craft Story</span>
+          <span
+            class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-gradient-to-r from-imperial-gold to-imperial-crimson group-hover:w-full transition-all duration-300"></span>
+        </a>
+      </nav>
+
+      <!-- Action Buttons (Audio, Lang, Cart) -->
+      <div class="flex items-center gap-3">
+        <!-- Audio Synthesizer Toggle -->
+        <button id="audio-toggle-btn" onclick="toggleAudio()"
+          class="p-2 sm:p-2.5 rounded-full border border-imperial-gold/25 bg-obsidian-light/60 hover:bg-imperial-crimson/20 text-imperial-gold transition-colors focus:outline-none"
+          title="Toggle Sound FX" aria-label="Toggle Sound Effects">
+          <svg id="audio-icon-on" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z">
+            </path>
+          </svg>
+          <svg id="audio-icon-off" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z m12-4l4 4m0-4l-4 4">
+            </path>
+          </svg>
+        </button>
+
+        <!-- Language Switcher -->
+        <div class="relative">
+          <button id="lang-btn" onclick="toggleLangMenu()"
+            class="flex items-center gap-1.5 py-1.5 px-3 rounded-full border border-imperial-gold/25 bg-obsidian-light/60 text-ivory text-xs font-semibold hover:bg-imperial-crimson/20 transition-colors">
+            <span class="text-imperial-gold">🌐</span>
+            <span id="lang-label" class="uppercase">EN</span>
+          </button>
+          <div id="lang-dropdown"
+            class="hidden absolute right-0 mt-2 w-32 rounded-xl bg-obsidian border border-imperial-gold/40 shadow-2xl py-1 z-50 backdrop-blur-xl">
+            <button onclick="setLanguage('en')"
+              class="w-full text-left px-3 py-2 text-xs text-ivory/90 hover:bg-imperial-crimson/30 hover:text-imperial-lightGold transition-colors font-medium">English</button>
+            <button onclick="setLanguage('zh-CN')"
+              class="w-full text-left px-3 py-2 text-xs text-ivory/90 hover:bg-imperial-crimson/30 hover:text-imperial-lightGold transition-colors font-sans-sc font-medium">简体中文</button>
+            <button onclick="setLanguage('zh-TW')"
+              class="w-full text-left px-3 py-2 text-xs text-ivory/90 hover:bg-imperial-crimson/30 hover:text-imperial-lightGold transition-colors font-sans-sc font-medium">繁體中文</button>
+          </div>
+        </div>
+
+        <!-- Tactile Cart Drawer Trigger -->
+        <button onclick="openCart()"
+          class="btn-lacquer-red relative px-4 py-2 rounded-full text-xs font-semibold text-ivory flex items-center gap-2 focus:outline-none">
+          <svg class="w-3.5 h-3.5 text-imperial-lightGold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <span class="hidden sm:inline uppercase tracking-wider text-[11px]" data-i18n="nav.box">Tasting Box</span>
+          <span id="cart-counter"
+            class="w-5 h-5 rounded-full bg-imperial-gold text-obsidian font-bold text-[10px] flex items-center justify-center shadow-md">2</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. DRAMATIC HERO SECTION -->
+  <!-- ========================================================================= -->
+  <section id="hero"
+    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-obsidian-deep via-imperial-deepRed/90 to-obsidian pt-28 pb-20 px-4 sm:px-6 lg:px-8">
+
+    <!-- Chinese Lattice Watermark Background -->
+    <div
+      class="absolute inset-0 opacity-[0.06] pointer-events-none bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:28px_28px]">
+    </div>
+
+    <!-- Atmospheric Crimson Glows -->
+    <div
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-imperial-crimson/20 rounded-full blur-[140px] pointer-events-none">
+    </div>
+    <div
+      class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-imperial-gold/10 rounded-full blur-[120px] pointer-events-none">
+    </div>
+
+    <!-- Traditional Vertical Calligraphy Watermarks -->
+    <div class="hidden xl:block absolute left-8 top-1/3 -translate-y-1/2 select-none pointer-events-none opacity-20">
+      <div
+        class="vertical-rl font-calligraphy text-4xl text-imperial-lightGold tracking-[0.4em] leading-relaxed border-l-2 border-imperial-gold/30 pl-4">
+        传承千载 · 熬就一味
+      </div>
+    </div>
+    <div class="hidden xl:block absolute right-8 top-1/3 -translate-y-1/2 select-none pointer-events-none opacity-20">
+      <div
+        class="vertical-rl font-calligraphy text-4xl text-imperial-lightGold tracking-[0.4em] leading-relaxed border-r-2 border-imperial-gold/30 pr-4">
+        手作麦丝 · 泼油生香
+      </div>
+    </div>
+
+    <!-- Hero Content Grid -->
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+
+      <!-- Left Column: Copy & Tactile CTAs -->
+      <div class="lg:col-span-6 flex flex-col items-start text-left space-y-6">
+
+        <!-- Top Badge -->
+        <div
+          class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-imperial-gold/40 bg-obsidian-light/70 shadow-lacquer backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-imperial-gold animate-ping"></span>
+          <span class="font-sans text-xs uppercase tracking-[0.2em] text-imperial-lightGold font-semibold"
+            data-i18n="hero.badge">
+            Imperial Master Heritage · 18h Bone Broth
+          </span>
+        </div>
+
+        <!-- Hero Headline -->
+        <div class="space-y-2">
+          <h2 class="font-calligraphy text-3xl sm:text-5xl text-imperial-lightGold tracking-wider drop-shadow-md">
+            传承千载 · 熬就一味
+          </h2>
+          <h1 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-ivory leading-[1.08]">
+            <span data-i18n="hero.titleLine1">CRAFTED FROM HERITAGE,</span><br>
+            <span class="gold-foil-text" data-i18n="hero.titleLine2">FIRED IN FLAVOUR</span>
+          </h1>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="font-sans text-base sm:text-lg text-ivory/80 max-w-xl leading-relaxed font-light"
+          data-i18n="hero.subtitle">
+          Artisan hand-pulled noodles, 18-hour slow-simmered bone broth, and flash-fired Sichuan aromatics. Taste the
+          street-food heritage in modern luxury packaging.
+        </p>
+
+        <!-- Quality Pillars Badges -->
+        <div class="grid grid-cols-3 gap-3 w-full max-w-lg pt-2 pb-2">
+          <div
+            class="flex flex-col items-center justify-center p-3 rounded-xl bg-obsidian/60 border border-imperial-gold/20 shadow-inner text-center">
+            <span class="text-xl mb-1">⏳</span>
+            <span class="font-serif-sc text-xs font-semibold text-ivory">18h Slow Simmer</span>
+            <span class="text-[10px] text-ivory/60">原汤慢吊</span>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center p-3 rounded-xl bg-obsidian/60 border border-imperial-gold/20 shadow-inner text-center">
+            <span class="text-xl mb-1">✨</span>
+            <span class="font-serif-sc text-xs font-semibold text-ivory">Hand-Pulled Silk</span>
+            <span class="text-[10px] text-ivory/60">手工抻拉</span>
+          </div>
+          <div
+            class="flex flex-col items-center justify-center p-3 rounded-xl bg-obsidian/60 border border-imperial-gold/20 shadow-inner text-center">
+            <span class="text-xl mb-1">☀️</span>
+            <span class="font-serif-sc text-xs font-semibold text-ivory">100% Non-Fried</span>
+            <span class="text-[10px] text-ivory/60">古法日晒</span>
+          </div>
+        </div>
+
+        <!-- Tactile Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+          <button onclick="handleHeroOrder()"
+            class="btn-lacquer-red w-full sm:w-auto px-8 py-4 rounded-xl font-sans text-sm font-bold tracking-wider text-ivory uppercase flex items-center justify-center gap-3 group focus:outline-none">
+            <span class="text-imperial-lightGold">🔥</span>
+            <span data-i18n="hero.ctaPrimary">Taste the Tradition</span>
+            <span class="text-imperial-lightGold group-hover:translate-x-1 transition-transform">→</span>
+          </button>
+          <a href="#flavours" onclick="soundFx.playBambooClick()"
+            class="btn-tactile-gold w-full sm:w-auto px-7 py-4 rounded-xl font-sans text-sm font-bold tracking-wider uppercase flex items-center justify-center gap-2 focus:outline-none">
+            <span>🏆</span>
+            <span data-i18n="hero.ctaSecondary">Explore 5 Flavours</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Central Steaming Artisan Noodle Bowl with Parallax Floating Elements -->
+      <div id="hero-bowl-container"
+        class="lg:col-span-6 relative flex items-center justify-center min-h-[480px] sm:min-h-[560px]">
+
+        <!-- Rotating Fretwork Compass Ring -->
+        <div
+          class="absolute w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] rounded-full border border-imperial-gold/30 border-dashed animate-spin-slow opacity-40 pointer-events-none">
+        </div>
+
+        <!-- Outer Crimson Halo Glow -->
+        <div
+          class="absolute w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full bg-gradient-to-tr from-imperial-crimson/40 to-transparent blur-2xl pointer-events-none">
+        </div>
+
+        <!-- Canvas Steam Layer -->
+        <div class="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+          <canvas id="steam-canvas" class="w-full h-full max-w-[500px] max-h-[500px]"></canvas>
+        </div>
+
+        <!-- Main Artisan Noodle Bowl -->
+        <div id="noodle-bowl"
+          class="relative z-10 w-[290px] h-[290px] sm:w-[390px] sm:h-[390px] rounded-full p-2 bg-gradient-to-b from-imperial-gold via-imperial-red to-obsidian-dark shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_rgba(139,0,0,0.5)] transition-transform duration-300 ease-out group">
+          <div class="w-full h-full rounded-full overflow-hidden relative border-4 border-obsidian-light">
+            <img src="https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80"
+              alt="Imperial Artisan Sichuan Mala Noodle Bowl"
+              class="w-full h-full object-cover transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-out">
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-white/25 pointer-events-none">
+            </div>
+            <div class="absolute inset-0 rounded-full border-2 border-imperial-gold/40 pointer-events-none"></div>
+          </div>
+
+          <!-- Cinnabar Seal on Bowl -->
+          <div
+            class="absolute -bottom-4 -left-3 z-30 chinese-seal w-16 h-16 rounded-xl shadow-2xl flex flex-col items-center justify-center p-1 border-2 border-imperial-lightGold/60">
+            <span class="text-[9px] font-heading uppercase tracking-widest text-imperial-lightGold">御制</span>
+            <span class="font-calligraphy text-2xl text-ivory leading-none">至味</span>
+          </div>
+
+          <!-- Floating Price Badge -->
+          <div
+            class="absolute -top-3 -right-2 z-30 px-3.5 py-1.5 rounded-full bg-obsidian/90 border border-imperial-gold/60 shadow-xl backdrop-blur-md flex items-center gap-2">
+            <span class="text-imperial-gold">🔥</span>
+            <span class="font-heading font-bold text-sm text-imperial-lightGold">$14.50</span>
+            <span class="text-[10px] text-ivory/70 uppercase">Artisan Box</span>
+          </div>
+        </div>
+
+        <!-- Floating Ingredient 1: Guizhou Dried Chili (Top Left) -->
+        <div
+          class="absolute -top-6 left-4 sm:left-8 z-30 p-3 rounded-2xl bg-obsidian/80 border border-imperial-gold/30 shadow-2xl backdrop-blur-md flex items-center gap-2 animate-float-1 pointer-events-none">
+          <span class="text-2xl">🌶️</span>
+          <div class="text-left">
+            <div class="text-[11px] font-bold text-ivory font-serif-sc">Sun-Dried Chili</div>
+            <div class="text-[9px] text-imperial-gold">朝天烈椒</div>
+          </div>
+        </div>
+
+        <!-- Floating Ingredient 2: Sichuan Tribute Mala Pepper (Bottom Right) -->
+        <div
+          class="absolute -bottom-6 right-2 sm:right-6 z-30 p-3 rounded-2xl bg-obsidian/80 border border-imperial-gold/30 shadow-2xl backdrop-blur-md flex items-center gap-2 animate-float-2 pointer-events-none">
+          <span class="text-2xl">✨</span>
+          <div class="text-left">
+            <div class="text-[11px] font-bold text-ivory font-serif-sc">Hanyuan Mala</div>
+            <div class="text-[9px] text-imperial-gold">清溪贡椒</div>
+          </div>
+        </div>
+
+        <!-- Floating Ingredient 3: Fresh Highland Scallion (Top Right) -->
+        <div
+          class="absolute top-8 -right-2 sm:right-2 z-30 p-2.5 rounded-2xl bg-obsidian/80 border border-imperial-gold/30 shadow-2xl backdrop-blur-md flex items-center gap-2 animate-float-3 pointer-events-none">
+          <span class="text-xl">🌿</span>
+          <div class="text-left">
+            <div class="text-[10px] font-bold text-ivory font-serif-sc">Alpine Scallion</div>
+            <div class="text-[8px] text-imperial-gold">高原鲜葱</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 3. FLAVOURS SECTION (THE FIVE REALMS) -->
+  <!-- ========================================================================= -->
+  <section id="flavours"
+    class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-obsidian via-[#170E10] to-obsidian-deep relative">
+
+    <div class="max-w-7xl mx-auto text-center space-y-4 mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-imperial-gold/30 bg-imperial-crimson/20 text-imperial-lightGold text-xs font-semibold tracking-widest uppercase">
+        <span class="chinese-seal w-4 h-4 text-[10px] rounded">五</span>
+        <span data-i18n="flavours.badge">THE FIVE MASTER RECIPES</span>
+      </div>
+      <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ivory" data-i18n="flavours.heading">
+        THE FIVE REALMS OF BROTH & SPICE
+      </h2>
+      <p class="font-sans text-sm sm:text-base text-ivory/70 max-w-2xl mx-auto" data-i18n="flavours.subheading">
+        Five distinct regional master recipes, each balanced to perfection through centuries of street heritage.
+      </p>
+    </div>
+
+    <!-- Flavor Cards Grid -->
+    <div id="flavours-grid" class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. CHINESE HERITAGE SECTION (THE 4 PILLARS OF CRAFT) -->
+  <!-- ========================================================================= -->
+  <section id="heritage" class="py-28 px-4 sm:px-6 lg:px-8 bg-[#F5EDE0] text-obsidian relative overflow-hidden">
+
+    <!-- Xuan Paper Grain Background Overlay -->
+    <div class="absolute inset-0 xuan-paper-texture opacity-90 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+      <!-- Section Title with Red Cinnabar Seal & Editorial Typography -->
+      <div class="text-center space-y-4 mb-20">
+        <div class="flex items-center justify-center gap-3">
+          <div class="chinese-seal w-12 h-12 text-2xl font-bold rounded-lg">
+            匠
+          </div>
+          <span class="font-heading text-xs sm:text-sm uppercase tracking-[0.3em] text-imperial-red font-bold"
+            data-i18n="heritage.tag">
+            FOUR CENTURIES OF CRAFTSMANSHIP
+          </span>
+        </div>
+        <h2 class="font-serif-sc text-3xl sm:text-5xl lg:text-6xl font-bold text-imperial-blood tracking-tight"
+          data-i18n="heritage.heading">
+          匠心四艺 · 传世之道
+        </h2>
+        <p class="font-sans text-base sm:text-lg text-obsidian/75 max-w-2xl mx-auto font-normal"
+          data-i18n="heritage.subheading">
+          The four sacred rituals that transform simple high-protein wheat and spring water into unbroken strands of
+          imperial silk.
+        </p>
+      </div>
+
+      <!-- 4 Pillars Grid (Scrolls) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+
+        <!-- Pillar 1: 醒面 -->
+        <div
+          class="bg-ivory rounded-2xl border-2 border-imperial-gold/40 p-6 sm:p-7 shadow-paper-emboss flex flex-col justify-between relative group hover:-translate-y-2 transition-transform duration-300">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-heading text-2xl font-bold text-imperial-red">01</span>
+              <div class="chinese-seal w-9 h-9 text-lg font-bold rounded">醒</div>
+            </div>
+            <h3 class="font-serif-sc text-xl font-bold text-imperial-blood">Resting the Dough · 醒面</h3>
+            <p class="text-xs text-imperial-brass font-semibold uppercase tracking-wider">3 Hours in Sealed Ceramic</p>
+            <p class="text-sm text-obsidian/80 leading-relaxed font-sans">
+              Alpine spring water meets inner winter wheat heart flour. Kept at 24°C in breathable earthen jars to allow
+              the gluten web to ripen naturally without chemicals.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-imperial-gold/30 text-xs text-imperial-red font-serif-sc font-semibold">
+            ✦ Bounces back in 1.8 seconds
+          </div>
+        </div>
+
+        <!-- Pillar 2: 拉条 -->
+        <div
+          class="bg-ivory rounded-2xl border-2 border-imperial-gold/40 p-6 sm:p-7 shadow-paper-emboss flex flex-col justify-between relative group hover:-translate-y-2 transition-transform duration-300">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-heading text-2xl font-bold text-imperial-red">02</span>
+              <div class="chinese-seal w-9 h-9 text-lg font-bold rounded">拉</div>
+            </div>
+            <h3 class="font-serif-sc text-xl font-bold text-imperial-blood">Hand-Pulling · 抻拉</h3>
+            <p class="text-xs text-imperial-brass font-semibold uppercase tracking-wider">512 Continuous Silk Strands
+            </p>
+            <p class="text-sm text-obsidian/80 leading-relaxed font-sans">
+              No blades are ever used. With rhythmic kinetic velocity, the master artisan extends a single dough block
+              into 512 microscopic silk ribbons that absorb 3x more broth.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-imperial-gold/30 text-xs text-imperial-red font-serif-sc font-semibold">
+            ✦ One continuous 18-meter ribbon
+          </div>
+        </div>
+
+        <!-- Pillar 3: 吊汤 -->
+        <div
+          class="bg-ivory rounded-2xl border-2 border-imperial-gold/40 p-6 sm:p-7 shadow-paper-emboss flex flex-col justify-between relative group hover:-translate-y-2 transition-transform duration-300">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-heading text-2xl font-bold text-imperial-red">03</span>
+              <div class="chinese-seal w-9 h-9 text-lg font-bold rounded">吊</div>
+            </div>
+            <h3 class="font-serif-sc text-xl font-bold text-imperial-blood">18h Double Broth · 吊汤</h3>
+            <p class="text-xs text-imperial-brass font-semibold uppercase tracking-wider">Triple-Clarified Collagen</p>
+            <p class="text-sm text-obsidian/80 leading-relaxed font-sans">
+              Marrow bones, free-range poultry, and Hokkaido dried scallops simmered with 24 imperial botanicals.
+              Clarified with minced chicken sweeps until liquid crystal.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-imperial-gold/30 text-xs text-imperial-red font-serif-sc font-semibold">
+            ✦ Zero artificial flavor powders
+          </div>
+        </div>
+
+        <!-- Pillar 4: 淬油 -->
+        <div
+          class="bg-ivory rounded-2xl border-2 border-imperial-gold/40 p-6 sm:p-7 shadow-paper-emboss flex flex-col justify-between relative group hover:-translate-y-2 transition-transform duration-300">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="font-heading text-2xl font-bold text-imperial-red">04</span>
+              <div class="chinese-seal w-9 h-9 text-lg font-bold rounded">淬</div>
+            </div>
+            <h3 class="font-serif-sc text-xl font-bold text-imperial-blood">Flash-Fired Oil · 淬油</h3>
+            <p class="text-xs text-imperial-brass font-semibold uppercase tracking-wider">210°C Smoking Brass Ladle</p>
+            <p class="text-sm text-obsidian/80 leading-relaxed font-sans">
+              Cold-pressed rapeseed oil poured at three precise thermal tiers (210°C / 175°C / 140°C) over crushed
+              chilies and toasted sesame to awaken deep caramelized heat.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-imperial-gold/30 text-xs text-imperial-red font-serif-sc font-semibold">
+            ✦ 7 Days porcelain aging
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 5. INTERACTIVE PRODUCT SHOWCASE & SKEUOMORPHIC PACKAGING -->
+  <!-- ========================================================================= -->
+  <section id="product-showcase" class="py-24 px-4 sm:px-6 lg:px-8 bg-obsidian relative">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center space-y-3 mb-16">
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-imperial-gold/30 bg-obsidian-light text-imperial-lightGold text-xs font-semibold uppercase tracking-widest">
+          <span>📦</span>
+          <span data-i18n="product.badge">SKEUOMORPHIC PACKAGING EXPERIENCE</span>
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ivory" data-i18n="product.title">
+          THE IMPERIAL PACKAGING SUITE
+        </h2>
+        <p class="font-sans text-sm sm:text-base text-ivory/70 max-w-2xl mx-auto" data-i18n="product.subtitle">
+          Tactile luxury packaging designed to preserve freshly hand-pulled wheat silk and liquid bone broth.
+        </p>
+      </div>
+
+      <!-- Main Showcase Container -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-gradient-to-br from-[#1C181D] to-[#100D11] border border-imperial-gold/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+
+        <!-- Left: Interactive 3D Packaging Box Visual -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center relative">
+
+          <div id="packaging-box-wrapper"
+            class="relative w-full max-w-[420px] aspect-square rounded-3xl p-4 bg-gradient-to-tr from-imperial-deepRed via-imperial-red to-imperial-gold/40 shadow-2xl border-2 border-imperial-gold/50 group">
+
+            <div class="w-full h-full rounded-2xl overflow-hidden relative shadow-inner bg-obsidian-deep">
+              <img id="showcase-img"
+                src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
+                alt="Imperial Packaging Box" class="w-full h-full object-cover transition-all duration-500">
+
+              <!-- Hot-Stamp Gold Foil Border Overlay -->
+              <div class="absolute inset-3 border border-imperial-gold/60 rounded-xl pointer-events-none"></div>
+              <div class="absolute top-6 left-6 chinese-seal w-12 h-12 text-xl font-bold rounded-md">
+                御
+              </div>
+
+              <!-- Nitrogen Lock Badge -->
+              <div
+                class="absolute bottom-6 right-6 px-3 py-1 rounded-full bg-obsidian/90 border border-imperial-gold/40 text-[10px] text-imperial-lightGold uppercase tracking-wider font-semibold">
+                ✦ Space-Grade Fresh Lock
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Flavor Thumbnails Bar -->
+          <div class="flex items-center gap-3 mt-6 overflow-x-auto max-w-full pb-2" id="flavor-pills-bar">
+            <!-- Dynamically populated -->
+          </div>
+
+        </div>
+
+        <!-- Right: Packaging Specs, Spice Customizer & Add to Box -->
+        <div class="lg:col-span-6 space-y-6 text-left">
+
+          <!-- Flavour Heading & Rating -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span id="showcase-tag"
+                class="text-xs uppercase tracking-widest text-imperial-gold font-semibold font-serif-sc">Signature
+                Artisan Recipe</span>
+              <div class="flex items-center gap-1 text-amber-400 text-sm font-bold">
+                <span>★</span>
+                <span id="showcase-rating">4.96</span>
+                <span class="text-xs text-ivory/50">(1,420 Reviews)</span>
+              </div>
+            </div>
+            <h3 id="showcase-name" class="font-heading text-3xl sm:text-4xl font-bold text-ivory">Sichuan Mala Fiery
+              Beef</h3>
+            <p id="showcase-pinyin" class="font-serif-sc text-sm text-imperial-lightGold italic">Chuān Wèi Má Là Niú Ròu
+              Miàn</p>
+            <p id="showcase-desc" class="text-sm text-ivory/80 leading-relaxed font-sans font-light">
+              An exhilarating symphony of fiery Guizhou chilis, tongue-tingling Hanyuan tribute peppercorns, and
+              slow-braised beef shank simmered in a dense bone broth.
+            </p>
+          </div>
+
+          <!-- Spice & Numbing Gauges -->
+          <div class="grid grid-cols-2 gap-4 p-4 rounded-2xl bg-obsidian/60 border border-imperial-gold/20">
+            <div>
+              <span class="text-xs text-ivory/70 uppercase tracking-wider block mb-1.5" data-i18n="product.spice">Spice
+                Level</span>
+              <div id="showcase-spice-meter" class="flex gap-1">
+                <!-- Injected flames -->
+              </div>
+            </div>
+            <div>
+              <span class="text-xs text-ivory/70 uppercase tracking-wider block mb-1.5" data-i18n="product.numbing">Mala
+                Numbing</span>
+              <div id="showcase-numb-meter" class="flex gap-1">
+                <!-- Injected lightning/sparks -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Noodle Strand Selector -->
+          <div class="space-y-2">
+            <label class="text-xs font-semibold uppercase tracking-wider text-ivory/80 block"
+              data-i18n="product.chooseNoodle">Select Noodle Thickness</label>
+            <div class="grid grid-cols-3 gap-2.5">
+              <button onclick="selectNoodleType(this, 'hand-pulled-ribbon')"
+                class="noodle-type-btn p-2.5 rounded-xl border border-imperial-gold bg-imperial-crimson/20 text-xs font-medium text-imperial-lightGold text-center transition-all focus:outline-none">
+                <span class="block font-bold">Wide Ribbon</span>
+                <span class="text-[10px] text-ivory/60">关中大宽</span>
+              </button>
+              <button onclick="selectNoodleType(this, 'silk-thin')"
+                class="noodle-type-btn p-2.5 rounded-xl border border-imperial-gold/20 bg-obsidian-light/60 text-xs font-medium text-ivory/70 hover:border-imperial-gold/50 text-center transition-all focus:outline-none">
+                <span class="block font-bold">Thin Silk</span>
+                <span class="text-[10px] text-ivory/60">龙须细丝</span>
+              </button>
+              <button onclick="selectNoodleType(this, 'round-wheat')"
+                class="noodle-type-btn p-2.5 rounded-xl border border-imperial-gold/20 bg-obsidian-light/60 text-xs font-medium text-ivory/70 hover:border-imperial-gold/50 text-center transition-all focus:outline-none">
+                <span class="block font-bold">Round Spring</span>
+                <span class="text-[10px] text-ivory/60">中圆筋道</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Nutrition Grid Badge -->
+          <div class="grid grid-cols-4 gap-2 text-center p-3 rounded-xl bg-obsidian/40 border border-imperial-gold/15">
+            <div>
+              <span class="text-[10px] text-ivory/50 uppercase block" data-i18n="product.calories">Calories</span>
+              <span id="showcase-cal" class="text-xs font-bold text-ivory">460 kcal</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-ivory/50 uppercase block" data-i18n="product.protein">Protein</span>
+              <span id="showcase-protein" class="text-xs font-bold text-ivory">22g</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-ivory/50 uppercase block" data-i18n="product.cookTime">Boil Time</span>
+              <span id="showcase-time" class="text-xs font-bold text-imperial-lightGold">3.5 Mins</span>
+            </div>
+            <div>
+              <span class="text-[10px] text-ivory/50 uppercase block" data-i18n="product.sodium">Preservatives</span>
+              <span class="text-xs font-bold text-emerald-400">0% Added</span>
+            </div>
+          </div>
+
+          <!-- Price, Quantity, Tactile Add-to-Cart -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-imperial-gold/20">
+            <div class="flex items-center gap-4">
+              <div>
+                <span class="text-[10px] text-ivory/60 uppercase block">Price</span>
+                <span id="showcase-price" class="font-heading text-3xl font-bold text-imperial-lightGold">$14.50</span>
+              </div>
+
+              <!-- Quantity Selector -->
+              <div class="flex items-center border border-imperial-gold/40 rounded-xl bg-obsidian/80 overflow-hidden">
+                <button onclick="changeShowcaseQty(-1)"
+                  class="px-3 py-2 text-ivory hover:bg-imperial-crimson/30 transition-colors font-bold focus:outline-none">-</button>
+                <span id="showcase-qty" class="px-3 py-2 text-xs font-bold text-ivory">1</span>
+                <button onclick="changeShowcaseQty(1)"
+                  class="px-3 py-2 text-ivory hover:bg-imperial-crimson/30 transition-colors font-bold focus:outline-none">+</button>
+              </div>
+            </div>
+
+            <!-- Tactile Add to Box Button -->
+            <button onclick="addShowcaseToCart()"
+              class="btn-lacquer-red w-full sm:flex-1 py-3.5 px-6 rounded-xl font-sans text-sm font-bold tracking-wider text-ivory uppercase flex items-center justify-center gap-2 focus:outline-none">
+              <span>🛒</span>
+              <span data-i18n="product.addToCart">Add to Imperial Box</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 6. INTERACTIVE INGREDIENTS MATRIX (HARMONIOUS ALCHEMY) -->
+  <!-- ========================================================================= -->
+  <section id="ingredients"
+    class="py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-obsidian-deep via-[#1A1215] to-obsidian relative overflow-hidden">
+
+    <div class="max-w-7xl mx-auto text-center space-y-4 mb-16">
+      <div
+        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-imperial-gold/30 bg-imperial-crimson/20 text-imperial-lightGold text-xs font-semibold uppercase tracking-widest">
+        <span>🌿</span>
+        <span data-i18n="ingredients.tag">TERROIR & PROVENANCE</span>
+      </div>
+      <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ivory" data-i18n="ingredients.heading">
+        HARMONIOUS ALCHEMY
+      </h2>
+      <p class="font-sans text-sm sm:text-base text-ivory/70 max-w-2xl mx-auto" data-i18n="ingredients.subheading">
+        Hover or tap each raw element to witness how high-altitude volcanic soils and sun-cured spices awaken the master
+        broth.
+      </p>
+    </div>
+
+    <!-- Interactive Alchemy Center: Bowl + Surrounding Ingredients -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+      <!-- Orbiting Ingredients Selector (Left 7 Cols) -->
+      <div class="lg:col-span-7 relative min-h-[460px] flex items-center justify-center p-4">
+
+        <!-- Center Broth Cauldrons Visual -->
+        <div
+          class="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] rounded-full p-2 bg-gradient-to-b from-imperial-gold to-imperial-crimson shadow-[0_0_50px_rgba(139,0,0,0.6)] z-10">
+          <div class="w-full h-full rounded-full overflow-hidden relative border-2 border-obsidian-light">
+            <img src="https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=600&q=80"
+              alt="Broth Center" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-imperial-blood/30 backdrop-blur-[1px]"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-2">
+              <span class="chinese-seal w-8 h-8 text-sm font-bold rounded mb-1">汤</span>
+              <span class="font-serif-sc text-xs font-bold text-imperial-lightGold uppercase tracking-widest">Master
+                Altar</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Orbiting Ingredients Buttons -->
+        <div id="ingredient-orbit-container" class="absolute inset-0 pointer-events-none">
+          <!-- Injected via JavaScript with orbital angles -->
+        </div>
+
+      </div>
+
+      <!-- Right: Detailed Ingredient Provenance Card (Right 5 Cols) -->
+      <div
+        class="lg:col-span-5 bg-gradient-to-b from-obsidian-light to-obsidian border border-imperial-gold/40 rounded-3xl p-6 sm:p-8 shadow-2xl text-left space-y-4">
+
+        <div class="flex items-center justify-between">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-imperial-crimson/20 border border-imperial-crimson/40 text-imperial-lightGold text-xs font-serif-sc">
+            <span id="active-ing-category">Spices & Aromatics</span>
+          </div>
+          <span id="active-ing-icon" class="text-3xl">🌶️</span>
+        </div>
+
+        <div class="space-y-1">
+          <h3 id="active-ing-name" class="font-heading text-2xl sm:text-3xl font-bold text-ivory">Hanyuan Tribute
+            Peppercorn</h3>
+          <p id="active-ing-pinyin" class="font-serif-sc text-sm text-imperial-gold font-medium">汉源红贡椒 · Hàn Yuán Gòng
+            Jiāo</p>
+        </div>
+
+        <div class="space-y-3 pt-2">
+          <div>
+            <span class="text-[11px] text-ivory/50 uppercase tracking-widest block font-bold">Terroir Origin</span>
+            <p id="active-ing-origin" class="text-xs text-imperial-lightGold font-medium">Qingxi Plateau, Sichuan
+              (Altitude 2,100m)</p>
+          </div>
+
+          <div>
+            <span class="text-[11px] text-ivory/50 uppercase tracking-widest block font-bold">Aroma Profile</span>
+            <p id="active-ing-aroma" class="text-xs text-ivory/80">Bright Citrus, Crushed Pine & Electric Numbing
+              Blossom</p>
+          </div>
+
+          <div>
+            <span class="text-[11px] text-ivory/50 uppercase tracking-widest block font-bold">Culinary
+              Contribution</span>
+            <p id="active-ing-desc" class="text-sm text-ivory/80 leading-relaxed font-light">
+              Electrifying vibration on the tongue that awakens every taste bud without overpowering the rich bone
+              broth. Hand-picked during early autumn.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="pt-4 border-t border-imperial-gold/20 flex items-center justify-between text-xs text-ivory/60 font-serif-sc">
+          <span>✦ 100% Single-Origin Harvest</span>
+          <span>✦ No Chemical Additives</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 7. INTERACTIVE 3-MINUTE COOKING RITUAL & TIMER -->
+  <!-- ========================================================================= -->
+  <section id="cooking-ritual"
+    class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#180F12] via-obsidian to-obsidian-deep relative text-center">
+
+    <div class="max-w-4xl mx-auto space-y-4 mb-14">
+      <div
+        class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-imperial-gold/30 bg-imperial-crimson/20 text-imperial-lightGold text-xs font-semibold uppercase tracking-widest">
+        <span>⏱️</span>
+        <span data-i18n="ritual.tag">THE 3-MINUTE TEMPLE PROTOCOL</span>
+      </div>
+      <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ivory" data-i18n="ritual.heading">
+        THE THREE-MINUTE COOKING ALTAR
+      </h2>
+      <p class="font-sans text-sm sm:text-base text-ivory/70 max-w-xl mx-auto" data-i18n="ritual.subheading">
+        Follow the ancient temple steps to summon restaurant-grade noodles at home with our live companion timer.
+      </p>
+    </div>
+
+    <!-- Cooking Ritual Mini-App Card -->
+    <div
+      class="max-w-3xl mx-auto bg-gradient-to-b from-obsidian-light to-obsidian-deep border-2 border-imperial-gold/40 rounded-3xl p-8 sm:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative">
+
+      <!-- Big Visual Timer Display -->
+      <div class="flex flex-col items-center justify-center space-y-4 mb-8">
+        <div
+          class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border-4 border-imperial-gold/30 flex items-center justify-center shadow-inner bg-obsidian/70">
+
+          <!-- Inner Circular Progress Ring -->
+          <svg class="absolute inset-0 w-full h-full -rotate-90">
+            <circle cx="50%" cy="50%" r="42%" stroke="rgba(212,175,55,0.15)" stroke-width="8" fill="transparent" />
+            <circle id="timer-progress-circle" cx="50%" cy="50%" r="42%" stroke="#D4AF37" stroke-width="8"
+              fill="transparent" stroke-dasharray="264" stroke-dashoffset="0" stroke-linecap="round"
+              class="transition-all duration-1000" />
+          </svg>
+
+          <div class="flex flex-col items-center justify-center z-10">
+            <span id="timer-display"
+              class="font-heading text-4xl sm:text-5xl font-bold text-imperial-lightGold tracking-wider">03:00</span>
+            <span id="timer-step-label"
+              class="text-[11px] font-serif-sc text-ivory/60 uppercase tracking-widest mt-1">Step 1: Boil Water</span>
+          </div>
+
+        </div>
+
+        <!-- Current Step Instruction -->
+        <p id="timer-step-desc" class="font-sans text-sm sm:text-base text-ivory/85 max-w-md">
+          Bring 500ml of water to a vigorous rolling boil in your favorite saucepan.
+        </p>
+      </div>
+
+      <!-- Timer Control Buttons -->
+      <div class="flex items-center justify-center gap-4">
+        <button id="timer-start-btn" onclick="toggleCookingTimer()"
+          class="btn-lacquer-red px-8 py-3.5 rounded-xl font-sans text-sm font-bold tracking-wider text-ivory uppercase flex items-center gap-2 focus:outline-none">
+          <span id="timer-btn-icon">▶</span>
+          <span id="timer-btn-text" data-i18n="ritual.startTimer">Begin 3-Min Boil Ritual</span>
+        </button>
+        <button onclick="resetCookingTimer()"
+          class="px-5 py-3.5 rounded-xl border border-imperial-gold/30 hover:bg-white/5 text-xs text-ivory uppercase tracking-wider font-semibold focus:outline-none transition-colors"
+          data-i18n="ritual.resetTimer">
+          Reset
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 8. BRAND STORY (SPLIT SCREEN CINEMATIC) -->
+  <!-- ========================================================================= -->
+  <section id="brand-story" class="py-24 px-4 sm:px-6 lg:px-8 bg-obsidian-deep relative">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Left: Master Heritage Street Stall -->
+      <div class="lg:col-span-6 space-y-6 text-left">
+        <div
+          class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-imperial-gold/30 bg-imperial-crimson/20 text-imperial-lightGold text-xs font-semibold uppercase tracking-widest">
+          <span>🏮</span>
+          <span>CHENGDU ALLEYWAYS · 1898</span>
+        </div>
+        <h2 class="font-heading text-3xl sm:text-5xl font-bold text-ivory leading-tight">
+          Centuries of Street Fire. Reimagined for the Modern Altar.
+        </h2>
+        <p class="font-serif-sc text-sm text-imperial-lightGold italic">
+          “To eat noodles is to consume time itself—pulled long, simmered deep, and savored hot.”
+        </p>
+        <p class="font-sans text-sm sm:text-base text-ivory/75 leading-relaxed font-light">
+          For over a millennium, Chinese noodle masters woke before dawn, tending roaring charcoal hearths and pulling
+          noodles by hand for weary travelers. YÙ Noodles (御面坊) was born to rescue this ancient craft from industrial
+          compromise—delivering 18-hour real bone broth and sun-dried silk ribbons in modern luxury packaging.
+        </p>
+
+        <div class="pt-4 flex items-center gap-6">
+          <div class="chinese-seal w-14 h-14 text-2xl font-bold rounded-xl shadow-seal-stamp">
+            御
+          </div>
+          <div>
+            <span class="font-heading font-bold text-base text-ivory block">Master Lin Zhenhua</span>
+            <span class="text-xs text-imperial-gold font-serif-sc">5th Generation Imperial Noodle Custodian</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Split Screen Image Artwork -->
+      <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+        <div class="rounded-2xl overflow-hidden border border-imperial-gold/30 shadow-2xl relative h-[380px] group">
+          <img src="https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=600&q=80"
+            alt="Ancient Street Stall"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-left">
+            <span class="text-[10px] text-imperial-gold uppercase tracking-wider block font-bold">Tradition</span>
+            <span class="font-serif-sc text-xs font-bold text-ivory">Ancient Charcoal Broth Altar</span>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl overflow-hidden border border-imperial-gold/30 shadow-2xl relative h-[380px] group mt-6">
+          <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=600&q=80"
+            alt="Modern Precision Craft"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-left">
+            <span class="text-[10px] text-imperial-gold uppercase tracking-wider block font-bold">Modern Craft</span>
+            <span class="font-serif-sc text-xs font-bold text-ivory">Space-Grade Nitrogen Seal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Fretwork Divider -->
+  <div class="fretwork-border"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 9. GRAND CTA SECTION (BRING THE TASTE OF CHINA HOME) -->
+  <!-- ========================================================================= -->
+  <section
+    class="py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-imperial-deepRed via-imperial-red to-obsidian-deep relative text-center overflow-hidden">
+
+    <!-- Background Chinese Seal Aura -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+      <span class="font-calligraphy text-[320px] text-ivory">御面</span>
+    </div>
+
+    <div class="max-w-4xl mx-auto relative z-10 space-y-6">
+
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-imperial-lightGold/40 bg-obsidian/60 text-imperial-lightGold text-xs font-bold uppercase tracking-widest shadow-lacquer">
+        <span>🏮</span>
+        <span>IMPERIAL TASTING COLLECTION</span>
+      </div>
+
+      <h2 class="font-heading text-4xl sm:text-6xl font-bold text-ivory tracking-tight" data-i18n="cta.title">
+        Bring the Taste of China Home.
+      </h2>
+
+      <p class="font-sans text-base sm:text-lg text-ivory/90 max-w-2xl mx-auto font-light" data-i18n="cta.subtitle">
+        Hand-pulled wheat silk. 18-hour clarified broth. Flash-fired Sichuan oil. Delivered to your doorstep in 48
+        hours.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button onclick="handleGrandOrder()"
+          class="btn-lacquer-red px-10 py-5 rounded-2xl font-sans text-base font-bold tracking-wider text-ivory uppercase flex items-center justify-center gap-3 shadow-2xl focus:outline-none group">
+          <span>🎁</span>
+          <span data-i18n="cta.order">Order Signature Tasting Box</span>
+          <span class="text-imperial-lightGold group-hover:translate-x-1 transition-transform">→</span>
+        </button>
+      </div>
+
+      <!-- Shipping Seal -->
+      <div
+        class="pt-6 flex items-center justify-center gap-3 text-xs text-imperial-lightGold font-serif-sc font-medium">
+        <span>✦ 48h Fresh Cold-Chain Delivery</span>
+        <span>✦ Free Ebony Chopsticks Included</span>
+        <span>✦ 100% Money-Back Taste Guarantee</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. LUXURY FOOTER -->
+  <!-- ========================================================================= -->
+  <footer
+    class="bg-obsidian-deep text-ivory/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 border-t border-imperial-gold/25 relative">
+    <div
+      class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10 text-left">
+
+      <!-- Col 1: Brand & Cinnabar Seal -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div
+            class="chinese-seal w-10 h-10 text-xl font-bold text-ivory flex items-center justify-center rounded-lg shadow-seal-stamp">
+            御
+          </div>
+          <span class="font-calligraphy text-2xl text-ivory">御面坊 YÙ NOODLES</span>
+        </div>
+        <p class="text-xs text-ivory/70 max-w-sm leading-relaxed font-sans">
+          Honoring four centuries of Chinese noodle craftsmanship. Non-fried, sun-cured wheat ribbons paired with
+          18-hour real bone broth and small-batch Sichuan aromatics.
+        </p>
+        <div class="text-[11px] text-imperial-gold font-serif-sc">
+          ✦ Certified 100% Non-Fried & Sun-Dried Craftsmanship
+        </div>
+      </div>
+
+      <!-- Col 2: Flavours Links -->
+      <div class="space-y-3">
+        <h4 class="font-heading text-xs font-bold uppercase tracking-widest text-imperial-lightGold">Signature Flavours
+        </h4>
+        <ul class="space-y-2 text-xs text-ivory/70">
+          <li><a href="#product-showcase" onclick="selectFlavourByIndex(0)"
+              class="hover:text-imperial-gold transition-colors">Sichuan Mala Fiery Beef</a></li>
+          <li><a href="#product-showcase" onclick="selectFlavourByIndex(1)"
+              class="hover:text-imperial-gold transition-colors">Black Garlic Tonkotsu</a></li>
+          <li><a href="#product-showcase" onclick="selectFlavourByIndex(2)"
+              class="hover:text-imperial-gold transition-colors">Imperial Golden Chicken</a></li>
+          <li><a href="#product-showcase" onclick="selectFlavourByIndex(3)"
+              class="hover:text-imperial-gold transition-colors">Chili Sesame Dan Dan</a></li>
+          <li><a href="#product-showcase" onclick="selectFlavourByIndex(4)"
+              class="hover:text-imperial-gold transition-colors">Shanxi Hot & Sour Silk</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Heritage & Lore -->
+      <div class="space-y-3">
+        <h4 class="font-heading text-xs font-bold uppercase tracking-widest text-imperial-lightGold">Heritage & Craft
+        </h4>
+        <ul class="space-y-2 text-xs text-ivory/70">
+          <li><a href="#heritage" class="hover:text-imperial-gold transition-colors">The 4 Pillars of Craft</a></li>
+          <li><a href="#ingredients" class="hover:text-imperial-gold transition-colors">Terroir Ingredients</a></li>
+          <li><a href="#cooking-ritual" class="hover:text-imperial-gold transition-colors">3-Minute Boil Ritual</a></li>
+          <li><a href="#brand-story" class="hover:text-imperial-gold transition-colors">Master Lineage</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Newsletter with Wax Seal -->
+      <div class="space-y-3">
+        <h4 class="font-heading text-xs font-bold uppercase tracking-widest text-imperial-lightGold"
+          data-i18n="footer.newsletterTitle">Imperial Tasting Club</h4>
+        <p class="text-xs text-ivory/60" data-i18n="footer.newsletterDesc">Subscribe to receive secret limited broth
+          drops and seasonal recipes.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input type="email" required placeholder="Enter your email"
+            class="w-full px-3.5 py-2 rounded-xl bg-obsidian border border-imperial-gold/30 text-xs text-ivory placeholder:text-ivory/40 focus:outline-none focus:border-imperial-gold">
+          <button type="submit"
+            class="btn-lacquer-red w-full py-2 rounded-xl text-xs font-bold text-ivory uppercase tracking-wider"
+            data-i18n="footer.newsletterBtn">
+            Seal & Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-ivory/50 gap-4">
+      <span>© 2026 御面坊 YÙ NOODLES. All Rights Reserved.</span>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-imperial-gold transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-imperial-gold transition-colors">Terms of Service</a>
+        <a href="#" class="hover:text-imperial-gold transition-colors">Authenticity Verification</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 11. SLIDE-OUT LUXURY SHOPPING CART DRAWER -->
+  <!-- ========================================================================= -->
+  <div id="cart-drawer-overlay" onclick="closeCart()"
+    class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
+
+  <div id="cart-drawer"
+    class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#161217] border-l-2 border-imperial-gold/40 shadow-2xl z-50 translate-x-full transition-transform duration-300 flex flex-col">
+
+    <!-- Cart Header -->
+    <div class="p-6 border-b border-imperial-gold/20 flex items-center justify-between bg-obsidian-deep">
+      <div class="flex items-center gap-3">
+        <div class="chinese-seal w-8 h-8 text-base font-bold rounded">盒</div>
+        <div>
+          <h3 class="font-heading text-lg font-bold text-ivory" data-i18n="cart.title">Your Imperial Tasting Box</h3>
+          <span id="cart-item-count-label" class="text-xs text-imperial-lightGold">2 Signature Packs</span>
+        </div>
+      </div>
+      <button onclick="closeCart()" class="p-2 text-ivory/60 hover:text-ivory text-xl focus:outline-none">✕</button>
+    </div>
+
+    <!-- Free Gift Progress Bar ($45+) -->
+    <div class="p-4 bg-imperial-crimson/20 border-b border-imperial-gold/20 text-left">
+      <div class="flex items-center justify-between text-xs mb-1.5">
+        <span class="font-semibold text-imperial-lightGold" id="gift-progress-text">Add $15.50 more for Handcrafted
+          Ebony Chopsticks!</span>
+        <span>🥢</span>
+      </div>
+      <div class="w-full h-2 rounded-full bg-obsidian overflow-hidden border border-imperial-gold/30">
+        <div id="gift-progress-bar"
+          class="h-full bg-gradient-to-r from-imperial-gold to-amber-300 transition-all duration-300"
+          style="width: 65%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div id="cart-items-list" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="p-6 border-t border-imperial-gold/30 bg-obsidian-deep space-y-4">
+
+      <div class="space-y-1.5 text-xs text-ivory/80">
+        <div class="flex justify-between">
+          <span data-i18n="cart.subtotal">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-bold text-ivory">$29.50</span>
+        </div>
+        <div class="flex justify-between">
+          <span data-i18n="cart.shipping">Imperial Express Delivery</span>
+          <span class="text-emerald-400 font-bold uppercase" data-i18n="cart.free">FREE</span>
+        </div>
+        <div id="bundle-discount-row" class="flex justify-between text-imperial-gold hidden">
+          <span>Emperor Box Discount (10% Off)</span>
+          <span id="bundle-discount-price">-$3.00</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-imperial-lightGold pt-2 border-t border-white/10">
+          <span data-i18n="cart.total">Total</span>
+          <span id="cart-total-price">$29.50</span>
+        </div>
+      </div>
+
+      <button onclick="triggerCheckout()"
+        class="btn-lacquer-red w-full py-4 rounded-xl font-sans text-sm font-bold tracking-wider text-ivory uppercase flex items-center justify-center gap-2 focus:outline-none">
+        <span>🔒</span>
+        <span data-i18n="cart.checkout">Proceed to Secure Checkout</span>
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 12. FLAVOUR DETAILS DISCOVERY MODAL -->
+  <!-- ========================================================================= -->
+  <div id="flavour-modal-overlay" onclick="closeFlavourModal()"
+    class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden transition-opacity duration-300"></div>
+
+  <div id="flavour-modal"
+    class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-gradient-to-b from-[#1C181D] to-obsidian border-2 border-imperial-gold/50 rounded-3xl p-6 sm:p-8 shadow-2xl z-50 hidden">
+    <div class="flex items-start justify-between pb-4 border-b border-imperial-gold/20">
+      <div>
+        <span id="modal-flavour-tag"
+          class="text-xs uppercase tracking-widest text-imperial-gold font-semibold font-serif-sc">Signature Artisan
+          Recipe</span>
+        <h3 id="modal-flavour-name" class="font-heading text-2xl sm:text-3xl font-bold text-ivory">Sichuan Mala Fiery
+          Beef</h3>
+        <p id="modal-flavour-pinyin" class="font-serif-sc text-sm text-imperial-lightGold italic">Chuān Wèi Má Là Niú
+          Ròu Miàn</p>
+      </div>
+      <button onclick="closeFlavourModal()"
+        class="p-2 text-ivory/60 hover:text-ivory text-2xl focus:outline-none">✕</button>
+    </div>
+
+    <div class="py-6 space-y-6 text-left">
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-imperial-gold mb-2 font-serif-sc">Culinary Heritage &
+          Lore</h4>
+        <p id="modal-flavour-story" class="text-sm text-ivory/80 leading-relaxed font-light">
+          Derived from the centuries-old street stalls of Chengdu, where master noodle pullers flash-seared whole chili
+          flakes in smoking beef tallow.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-imperial-gold mb-2 font-serif-sc">Tasting Notes</h4>
+        <div id="modal-tasting-notes" class="flex flex-wrap gap-2">
+          <!-- Injected badges -->
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-imperial-gold mb-2 font-serif-sc">Whole Terroir
+          Ingredients</h4>
+        <ul id="modal-ingredients-list" class="grid grid-cols-2 gap-2 text-xs text-ivory/70 list-disc list-inside">
+          <!-- Injected items -->
+        </ul>
+      </div>
+
+      <div
+        class="p-4 rounded-2xl bg-obsidian-light/60 border border-imperial-gold/20 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-ivory/50 block">Price per Box</span>
+          <span id="modal-price" class="font-heading text-2xl font-bold text-imperial-lightGold">$14.50</span>
+        </div>
+        <button onclick="addModalFlavourToCart()"
+          class="btn-lacquer-red px-6 py-3 rounded-xl font-sans text-xs font-bold tracking-wider text-ivory uppercase">
+          Add This Recipe to Box
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 13. SIMULATED CHECKOUT CONFIRMATION MODAL -->
+  <!-- ========================================================================= -->
+  <div id="checkout-modal-overlay"
+    class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div
+      class="max-w-lg w-full bg-gradient-to-b from-[#1E1920] to-obsidian border-2 border-imperial-gold rounded-3xl p-8 shadow-2xl text-center space-y-6 animate-fade-in relative">
+
+      <div class="chinese-seal w-16 h-16 text-3xl font-bold rounded-2xl mx-auto shadow-seal-stamp animate-bounce">
+        御
+      </div>
+
+      <div class="space-y-2">
+        <span class="text-xs font-serif-sc text-imperial-lightGold uppercase tracking-widest font-bold">Imperial Order
+          Confirmed</span>
+        <h3 class="font-heading text-3xl font-bold text-ivory">Your Feast is Being Prepared!</h3>
+        <p class="text-xs text-ivory/70 leading-relaxed font-sans">
+          Order #YU-89218 has been sealed in our artisan kitchen. Your noodles will be fresh-pulled and shipped via
+          48-hour cold chain delivery.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-obsidian border border-imperial-gold/20 text-left text-xs space-y-2 text-ivory/80">
+        <div class="flex justify-between">
+          <span class="text-ivory/50">Tracking:</span>
+          <span class="font-mono text-imperial-gold font-bold">SF-EXPRESS-88921479</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-ivory/50">Complimentary Gift:</span>
+          <span class="text-emerald-400 font-semibold">Master Handcrafted Ebony Chopsticks</span>
+        </div>
+      </div>
+
+      <button onclick="closeCheckoutModal()"
+        class="btn-tactile-gold w-full py-3.5 rounded-xl font-sans text-xs font-bold uppercase tracking-wider text-obsidian">
+        Return to Imperial Feast
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 14. JAVASCRIPT APPLICATION CORE -->
+  <!-- ========================================================================= -->
+  <script>
+    // =========================================================================
+    // A. WEB AUDIO API SYNTHESIZER
+    // =========================================================================
+    class SoundFX {
+      constructor() {
+        this.ctx = null;
+        this.isMuted = localStorage.getItem('yu_noodle_muted') === 'true';
+      }
+      initContext() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume();
+      }
+      toggleMute() {
+        this.isMuted = !this.isMuted;
+        localStorage.setItem('yu_noodle_muted', String(this.isMuted));
+        if (!this.isMuted) this.playBambooClick();
+        return this.isMuted;
+      }
+      playBambooClick() {
+        if (this.isMuted) return;
+        try {
+          this.initContext();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(820, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(140, this.ctx.currentTime + 0.04);
+          gain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.045);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.05);
+        } catch (e) { }
+      }
+      playLacquerPress() {
+        if (this.isMuted) return;
+        try {
+          this.initContext();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(240, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(60, this.ctx.currentTime + 0.08);
+          gain.gain.setValueAtTime(0.4, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.09);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.1);
+        } catch (e) { }
+      }
+      playSealStamp() {
+        if (this.isMuted) return;
+        try {
+          this.initContext();
+          if (!this.ctx) return;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(160, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(45, this.ctx.currentTime + 0.18);
+          gain.gain.setValueAtTime(0.5, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.23);
+        } catch (e) { }
+      }
+      playChimeGong() {
+        if (this.isMuted) return;
+        try {
+          this.initContext();
+          if (!this.ctx) return;
+          const freqs = [392, 587.33, 784, 1174.66]; // Pentatonic bells
+          freqs.forEach((freq, i) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+            gain.gain.setValueAtTime(0.2 / (i + 1), this.ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.8 + i * 0.4);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            osc.stop(this.ctx.currentTime + 2.5);
+          });
+        } catch (e) { }
+      }
+    }
+    const soundFx = new SoundFX();
+
+    function toggleAudio() {
+      const isMuted = soundFx.toggleMute();
+      document.getElementById('audio-icon-on').classList.toggle('hidden', isMuted);
+      document.getElementById('audio-icon-off').classList.toggle('hidden', !isMuted);
+    }
+
+    // =========================================================================
+    // B. PRODUCT DATA & LORE
+    // =========================================================================
+    const FLAVOURS = [
+      {
+        id: 'sichuan-spicy',
+        nameEn: 'Sichuan Mala Fiery Beef',
+        nameCn: '川味麻辣牛肉面',
+        pinyin: 'Chuān Wèi Má Là Niú Ròu Miàn',
+        tagEn: 'Signature Artisan Recipe',
+        tagCn: '镇店之宝 · 蜀道至辣',
+        spiceLevel: 5,
+        numbingLevel: 5,
+        cookingTimeMins: 3.5,
+        calories: 460,
+        proteinGrams: 22,
+        price: 14.50,
+        rating: 4.96,
+        reviewsCount: 1420,
+        descriptionEn: 'An exhilarating symphony of fiery Guizhou chilis, tongue-tingling Hanyuan tribute peppercorns, and slow-braised beef shank simmered in a dense bone broth.',
+        descriptionCn: '精选贵州朝天椒与汉源贡椒，红油滚烫，牛腱肉块软烂浓郁，面条筋道如丝，入口麻辣鲜香层层绽放。',
+        heritageStoryEn: 'Derived from the centuries-old street stalls of Chengdu, where master noodle pullers flash-seared whole chili flakes in smoking beef tallow.',
+        tastingNotesEn: ['Smoky Chili Crunch', 'Citrus Numbing Buzz', 'Rich Bone Umami', 'Star Anise Finish'],
+        ingredientsListEn: ['Hand-Pulled Wheat Silk', 'Pixian Fermented Doubanjiang', 'Hanyuan Red Peppercorns', 'Braised Beef Shank', 'Star Anise', 'Crisp Scallions'],
+        boxImage: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+        bowlImage: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        id: 'black-garlic',
+        nameEn: 'Black Garlic Tonkotsu Broth',
+        nameCn: '黑蒜浓香骨汤面',
+        pinyin: 'Hēi Suàn Nóng Xiāng Gǔ Tāng Miàn',
+        tagEn: '90-Day Fermentation',
+        tagCn: '九旬发酵 · 醇厚至臻',
+        spiceLevel: 1,
+        numbingLevel: 0,
+        cookingTimeMins: 3.0,
+        calories: 440,
+        proteinGrams: 20,
+        price: 15.00,
+        rating: 4.98,
+        reviewsCount: 980,
+        descriptionEn: 'Deeply comforting and velvety. Fermented black garlic oil drizzled over an opulent 18-hour bone broth that clings perfectly to every silk noodle.',
+        descriptionCn: '精选历经90天恒温熟成的黑蒜，研磨炼制成甘醇焦香黑油，融入如奶般温润的猪骨浓汤，口感丝滑，回味悠长。',
+        heritageStoryEn: 'Inspired by ancient wellness alchemy where aged black garlic was celebrated for longevity and paired with gelatinous bone marrow reductions.',
+        tastingNotesEn: ['Sweet Balsamic Garlic', 'Creamy Collagen Mouthfeel', 'Toasted Sesame Embers', 'Earthy Shiitake'],
+        ingredientsListEn: ['Sun-Dried Wheat Silk', '90-Day Fermented Black Garlic Oil', 'Simmered Bone Broth Essence', 'Wood Ear Mushrooms', 'Toasted White Sesame'],
+        boxImage: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80',
+        bowlImage: 'https://images.unsplash.com/photo-1591814468924-caf88d1232e1?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        id: 'classic-chicken',
+        nameEn: 'Imperial Golden Broth Chicken',
+        nameCn: '金汤御品走地鸡面',
+        pinyin: 'Jīn Tāng Yù Pǐn Zǒu Dì Jī Miàn',
+        tagEn: 'Nourishing Imperial Court Recipe',
+        tagCn: '御膳金汤 · 养生滋补',
+        spiceLevel: 0,
+        numbingLevel: 0,
+        cookingTimeMins: 2.5,
+        calories: 390,
+        proteinGrams: 24,
+        price: 15.50,
+        rating: 4.95,
+        reviewsCount: 840,
+        descriptionEn: 'Lustrous, naturally golden broth simmered until liquid gold. Sweet with maritime dried scallops and fragrant with whole farm-raised capon.',
+        descriptionCn: '色泽金黄澄澈，汤汁浓而不腻。融入深海瑶柱之鲜甜与宁夏枸杞之温润，每一口皆是如皇家御膳般的纯粹滋养。',
+        heritageStoryEn: 'Recreated from Qing Dynasty imperial pantry logs, where broth masters skimmed top oils and slow-simmered capons with sea delicacies for the Emperor.',
+        tastingNotesEn: ['Golden Poultry Sweetness', 'Scallop Ocean Breeze', 'Goji Blossom Finish', 'Clean Ginger Warmth'],
+        ingredientsListEn: ['Fine Dragon Whisker Silk', 'Double-Boiled Golden Chicken Stock', 'Hokkaido Dried Scallop Flakes', 'Ningxia Goji Berries', 'Golden Cordyceps Flower'],
+        boxImage: 'https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80',
+        bowlImage: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        id: 'chili-sesame',
+        nameEn: 'Chengdu Chili Sesame Dan Dan',
+        nameCn: '老成都红油麻酱面',
+        pinyin: 'Lǎo Chéng Dū Hóng Yóu Má Jiàng Miàn',
+        tagEn: 'Street Artisan Classic',
+        tagCn: '蓉城街巷 · 浓醇拌味',
+        spiceLevel: 4,
+        numbingLevel: 3,
+        cookingTimeMins: 3.0,
+        calories: 480,
+        proteinGrams: 19,
+        price: 13.90,
+        rating: 4.93,
+        reviewsCount: 1150,
+        descriptionEn: 'The undisputed soul of Sichuan street food. Thick, aromatic stone-ground sesame paste swirled with crispy flash-fired chili oil.',
+        descriptionCn: '老成都担担面精髓。浓郁石磨麻酱与焦脆红油激烈碰撞，裹满每一根Q弹面条，入口坚果香与麻辣层层席卷。',
+        heritageStoryEn: 'Carried across the mist-shrouded alleys of Chengdu on shoulder poles (Dan Dan), this recipe relies on stone-ground sesame seeds roasted over gentle embers.',
+        tastingNotesEn: ['Nutty Roasted Sesame', 'Crispy Chili Flake', 'Tangy Sweet Soy', 'Warm Mala Tingle'],
+        ingredientsListEn: ['Springy Round Wheat Noodle', 'Stone-Ground White Sesame Butter', 'Crispy Sichuan Chili Oil', 'Roasted Peanut Bits', 'Aged Black Soy Sauce'],
+        boxImage: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?auto=format&fit=crop&w=800&q=80',
+        bowlImage: 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        id: 'hot-sour',
+        nameEn: 'Shanxi Aged Vinegar Hot & Sour',
+        nameCn: '山西老陈醋酸辣粉',
+        pinyin: 'Shān Xī Lǎo Chén Cù Suān Là Fěn',
+        tagEn: '8-Year Barrel Aged',
+        tagCn: '八载陈醋 · 醇酸爽辣',
+        spiceLevel: 3,
+        numbingLevel: 2,
+        cookingTimeMins: 4.0,
+        calories: 380,
+        proteinGrams: 14,
+        price: 14.00,
+        rating: 4.91,
+        reviewsCount: 760,
+        descriptionEn: 'Electrifying balance of deep oak-aged acidity and fiery chili broth, paired with delightfully chewy sweet potato glass ribbons.',
+        descriptionCn: '八年老陈醋沉淀出的醇厚酸香，与烈火红汤激烈交织。晶莹剔透的手打红薯粉爽滑筋道，酸得开胃，辣得酣畅。',
+        heritageStoryEn: 'Shanxi vinegar masters ferment sorghum through freezing winters and blazing summers, developing a rich fruity tartness.',
+        tastingNotesEn: ['Mellow Aged Plum Sour', 'Smoky Chili Broth', 'Crisp Crunch Soybeans', 'Glass Noodle Bounce'],
+        ingredientsListEn: ['Pure Sweet Potato Starch Glass Silk', '8-Year Shanxi Aged Vinegar', 'Spiced Chili Infused Oil', 'Crispy Fried Soybeans', 'Cilantro Crystals'],
+        boxImage: 'https://images.unsplash.com/photo-1612927601601-6638404737ce?auto=format&fit=crop&w=800&q=80',
+        bowlImage: 'https://images.unsplash.com/photo-1547928576-a4a33237cbc3?auto=format&fit=crop&w=800&q=80',
+      }
+    ];
+
+    const INGREDIENTS = [
+      {
+        id: 'sichuan-pepper',
+        nameEn: 'Hanyuan Tribute Peppercorn',
+        nameCn: '汉源红贡椒',
+        pinyin: 'Hàn Yuán Gòng Jiāo',
+        categoryEn: 'Spices & Aromatics',
+        originEn: 'Qingxi Plateau, Sichuan (Altitude 2,100m)',
+        aromaProfileEn: 'Bright Citrus, Crushed Pine & Electric Numbing Blossom',
+        descriptionEn: 'Electrifying vibration on the tongue that awakens every taste bud without overpowering the rich bone broth.',
+        icon: '🌶️',
+        angle: 0
+      },
+      {
+        id: 'facing-chili',
+        nameEn: 'Facing-Heaven Chili Pods',
+        nameCn: '贵州朝天椒',
+        pinyin: 'Guì Zhōu Cháo Tiān Jiāo',
+        categoryEn: 'Spices & Aromatics',
+        originEn: 'Zunyi Sun-Drenched Valleys, Guizhou',
+        aromaProfileEn: 'Sun-Toasted Leather, Sweet Paprika & Fierce Embers',
+        descriptionEn: 'Delivers a deep, round heat that blooms at the back of the palate with caramelized sweetness.',
+        icon: '🔥',
+        angle: 60
+      },
+      {
+        id: 'black-garlic',
+        nameEn: '90-Day Fermented Black Garlic',
+        nameCn: '九旬发酵黑蒜',
+        pinyin: 'Jiǔ Xún Fā Jiào Hēi Suàn',
+        categoryEn: 'Umami Enhancers',
+        originEn: 'Jinxiang Purple-Skin Garlic Valley, Shandong',
+        aromaProfileEn: 'Balsamic Fig, Dark Molasses & Roasted Umami',
+        descriptionEn: 'Naturally cured in cedar chambers for three full lunar cycles into velvety soft pearls of umami nectar.',
+        icon: '🧄',
+        angle: 120
+      },
+      {
+        id: 'white-sesame',
+        nameEn: 'Stone-Ground White Sesame',
+        nameCn: '古法石磨白芝麻',
+        pinyin: 'Gǔ Fǎ Shí Mò Bái Zhī Ma',
+        categoryEn: 'Pastes & Oils',
+        originEn: 'Xiangyang Alluvial Plains, Hubei',
+        aromaProfileEn: 'Toasted Hazelnut, Warm Pastry & Sweet Cream',
+        descriptionEn: 'Slowly cold-milled on granite millstones to preserve volatile aroma oils from friction heat.',
+        icon: '🌱',
+        angle: 180
+      },
+      {
+        id: 'spring-scallion',
+        nameEn: 'High-Mountain Crisp Scallion',
+        nameCn: '高原细香葱',
+        pinyin: 'Gāo Yuán Xì Xiāng Cōng',
+        categoryEn: 'Fresh Botanicals',
+        originEn: 'Yunnan Plateau Cool Terraces (Altitude 1,900m)',
+        aromaProfileEn: 'Crisp Green Sweetness, Dew-Fresh Onion Bloom',
+        descriptionEn: 'Provides an essential burst of refreshing sweetness that cuts through rich savory broths.',
+        icon: '🌿',
+        angle: 240
+      },
+      {
+        id: 'wheat-silk',
+        nameEn: 'Guanzhong Heritage Wheat Silk',
+        nameCn: '关中高筋麦芯粉',
+        pinyin: 'Guān Zhōng Gāo Jīn Mài Xīn Fěn',
+        categoryEn: 'Noodle Foundation',
+        originEn: 'Yellow River Loess Plateau, Shaanxi',
+        aromaProfileEn: 'Golden Grain Field, Warm Bread Steam',
+        descriptionEn: '14.5% natural wheat protein. Hand-pulled into silky strands that maintain Q-bounce without becoming soggy.',
+        icon: '🌾',
+        angle: 300
+      }
+    ];
+
+    // =========================================================================
+    // C. APPLICATION STATE & CART MANAGEMENT
+    // =========================================================================
+    let currentLang = 'en';
+    let selectedFlavourIndex = 0;
+    let selectedNoodleType = 'hand-pulled-ribbon';
+    let showcaseQty = 1;
+
+    let cart = [
+      { flavourId: 'sichuan-spicy', noodleType: 'hand-pulled-ribbon', quantity: 2, unitPrice: 14.50 },
+      { flavourId: 'black-garlic', noodleType: 'silk-thin', quantity: 1, unitPrice: 15.00 }
+    ];
+
+    // =========================================================================
+    // D. RENDERING FLAVOURS & SHOWCASE
+    // =========================================================================
+    function renderFlavours() {
+      const grid = document.getElementById('flavours-grid');
+      if (!grid) return;
+      grid.innerHTML = FLAVOURS.map((f, index) => {
+        let spiceIcons = '🌶️'.repeat(f.spiceLevel) || '🌱 Mild';
+        return `
+          <div class="bg-gradient-to-b from-[#211B22] to-obsidian border border-imperial-gold/30 rounded-3xl p-6 shadow-2xl flex flex-col justify-between group hover:border-imperial-gold transition-all duration-300 relative overflow-hidden">
+            
+            <div class="space-y-4">
+              <!-- Card Image Header -->
+              <div class="w-full h-48 rounded-2xl overflow-hidden relative border border-white/10">
+                <img src="${f.boxImage}" alt="${f.nameEn}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-obsidian/80 backdrop-blur-md text-[10px] font-bold text-imperial-lightGold border border-imperial-gold/30">
+                  ${f.tagEn}
+                </div>
+                <div class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-obsidian/90 backdrop-blur-md text-xs font-bold text-amber-300">
+                  ${spiceIcons}
+                </div>
+              </div>
+
+              <!-- Titles -->
+              <div>
+                <span class="text-xs text-imperial-gold font-serif-sc">${f.nameCn}</span>
+                <h3 class="font-heading text-xl font-bold text-ivory">${f.nameEn}</h3>
+                <p class="text-xs text-ivory/70 line-clamp-2 mt-1 font-light">${f.descriptionEn}</p>
+              </div>
+
+              <!-- Tasting Tags -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                ${f.tastingNotesEn.slice(0, 2).map(n => `<span class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[10px] text-ivory/70 font-serif-sc">${n}</span>`).join('')}
+              </div>
+            </div>
+
+            <!-- Card Bottom Bar -->
+            <div class="mt-6 pt-4 border-t border-imperial-gold/20 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-ivory/50 uppercase block">Price</span>
+                <span class="font-heading text-xl font-bold text-imperial-lightGold">$${f.price.toFixed(2)}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="openFlavourModal(${index})" class="px-3 py-2 rounded-xl border border-imperial-gold/30 hover:bg-white/5 text-xs text-imperial-lightGold transition-colors font-medium">
+                  Discover
+                </button>
+                <button onclick="quickAddToCart(${index})" class="btn-lacquer-red px-3.5 py-2 rounded-xl text-xs font-bold text-ivory flex items-center gap-1">
+                  <span>+</span> Box
+                </button>
+              </div>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+
+      // Populate Showcase Flavour Pills Bar
+      const pillsBar = document.getElementById('flavor-pills-bar');
+      if (pillsBar) {
+        pillsBar.innerHTML = FLAVOURS.map((f, i) => `
+          <button onclick="selectFlavourByIndex(${i})" class="showcase-pill px-3 py-1.5 rounded-full border ${i === selectedFlavourIndex ? 'border-imperial-gold bg-imperial-crimson/40 text-imperial-lightGold font-bold' : 'border-imperial-gold/20 bg-obsidian text-ivory/70'} text-xs whitespace-nowrap transition-all focus:outline-none">
+            ${f.nameEn.split(' ')[0]}
+          </button>
+        `).join('');
+      }
+
+      updateShowcaseDisplay();
+    }
+
+    function selectFlavourByIndex(index) {
+      soundFx.playBambooClick();
+      selectedFlavourIndex = index;
+      document.querySelectorAll('.showcase-pill').forEach((pill, i) => {
+        pill.className = `showcase-pill px-3 py-1.5 rounded-full border ${i === selectedFlavourIndex ? 'border-imperial-gold bg-imperial-crimson/40 text-imperial-lightGold font-bold' : 'border-imperial-gold/20 bg-obsidian text-ivory/70'} text-xs whitespace-nowrap transition-all focus:outline-none`;
+      });
+      updateShowcaseDisplay();
+    }
+
+    function updateShowcaseDisplay() {
+      const f = FLAVOURS[selectedFlavourIndex];
+      document.getElementById('showcase-img').src = f.boxImage;
+      document.getElementById('showcase-tag').innerText = f.tagEn;
+      document.getElementById('showcase-rating').innerText = f.rating.toFixed(2);
+      document.getElementById('showcase-name').innerText = f.nameEn;
+      document.getElementById('showcase-pinyin').innerText = f.nameCn + ' · ' + f.pinyin;
+      document.getElementById('showcase-desc').innerText = f.descriptionEn;
+      document.getElementById('showcase-cal').innerText = f.calories + ' kcal';
+      document.getElementById('showcase-protein').innerText = f.proteinGrams + 'g';
+      document.getElementById('showcase-time').innerText = f.cookingTimeMins + ' Mins';
+      document.getElementById('showcase-price').innerText = '$' + f.price.toFixed(2);
+
+      // Spice Meter
+      let spiceHtml = '';
+      for (let i = 0; i < 5; i++) {
+        spiceHtml += `<span class="text-sm ${i < f.spiceLevel ? 'text-rose-500 animate-pulse' : 'text-ivory/20'}">🔥</span>`;
+      }
+      document.getElementById('showcase-spice-meter').innerHTML = spiceHtml;
+
+      // Numbing Meter
+      let numbHtml = '';
+      for (let i = 0; i < 5; i++) {
+        numbHtml += `<span class="text-sm ${i < f.numbingLevel ? 'text-amber-400' : 'text-ivory/20'}">⚡</span>`;
+      }
+      document.getElementById('showcase-numb-meter').innerHTML = numbHtml;
+    }
+
+    function selectNoodleType(btn, type) {
+      soundFx.playBambooClick();
+      selectedNoodleType = type;
+      document.querySelectorAll('.noodle-type-btn').forEach(b => {
+        b.className = 'noodle-type-btn p-2.5 rounded-xl border border-imperial-gold/20 bg-obsidian-light/60 text-xs font-medium text-ivory/70 hover:border-imperial-gold/50 text-center transition-all focus:outline-none';
+      });
+      btn.className = 'noodle-type-btn p-2.5 rounded-xl border border-imperial-gold bg-imperial-crimson/20 text-xs font-medium text-imperial-lightGold text-center transition-all focus:outline-none';
+    }
+
+    function changeShowcaseQty(delta) {
+      soundFx.playBambooClick();
+      showcaseQty = Math.max(1, showcaseQty + delta);
+      document.getElementById('showcase-qty').innerText = showcaseQty;
+    }
+
+    function addShowcaseToCart() {
+      soundFx.playLacquerPress();
+      soundFx.playSealStamp();
+      const flavour = FLAVOURS[selectedFlavourIndex];
+      addToCartState(flavour.id, selectedNoodleType, showcaseQty, flavour.price);
+      openCart();
+    }
+
+    function quickAddToCart(index) {
+      soundFx.playLacquerPress();
+      const flavour = FLAVOURS[index];
+      addToCartState(flavour.id, 'hand-pulled-ribbon', 1, flavour.price);
+      openCart();
+    }
+
+    function handleHeroOrder() {
+      soundFx.playChimeGong();
+      addToCartState('sichuan-spicy', 'hand-pulled-ribbon', 1, 14.50);
+      openCart();
+    }
+
+    function handleGrandOrder() {
+      soundFx.playChimeGong();
+      // Add all 5 flavors for grand tasting box
+      FLAVOURS.forEach(f => {
+        addToCartState(f.id, 'hand-pulled-ribbon', 1, f.price);
+      });
+      openCart();
+    }
+
+    // =========================================================================
+    // E. CART DRAWER & STATE LOGIC
+    // =========================================================================
+    function addToCartState(flavourId, noodleType, qty, unitPrice) {
+      const existing = cart.find(item => item.flavourId === flavourId && item.noodleType === noodleType);
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({ flavourId, noodleType, quantity: qty, unitPrice });
+      }
+      renderCart();
+    }
+
+    function updateCartQty(index, delta) {
+      soundFx.playBambooClick();
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function renderCart() {
+      const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
+      const subtotal = cart.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
+      const hasBundleDiscount = totalItems >= 4;
+      const discount = hasBundleDiscount ? subtotal * 0.1 : 0;
+      const finalTotal = subtotal - discount;
+      const freeGiftThreshold = 45.00;
+
+      // Update counters
+      document.getElementById('cart-counter').innerText = totalItems;
+      document.getElementById('cart-item-count-label').innerText = `${totalItems} Signature Pack${totalItems !== 1 ? 's' : ''}`;
+      document.getElementById('cart-subtotal-price').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('cart-total-price').innerText = `$${finalTotal.toFixed(2)}`;
+
+      // Bundle Discount Row
+      const bundleRow = document.getElementById('bundle-discount-row');
+      if (hasBundleDiscount) {
+        bundleRow.classList.remove('hidden');
+        document.getElementById('bundle-discount-price').innerText = `-$${discount.toFixed(2)}`;
+      } else {
+        bundleRow.classList.add('hidden');
+      }
+
+      // Gift Progress Bar
+      const progressPct = Math.min(100, (subtotal / freeGiftThreshold) * 100);
+      document.getElementById('gift-progress-bar').style.width = `${progressPct}%`;
+      const giftText = document.getElementById('gift-progress-text');
+      if (subtotal >= freeGiftThreshold) {
+        giftText.innerText = '🎉 Complimentary Imperial Ebony Chopsticks Unlocked!';
+      } else {
+        const remaining = (freeGiftThreshold - subtotal).toFixed(2);
+        giftText.innerText = `Add $${remaining} more for Handcrafted Ebony Chopsticks!`;
+      }
+
+      // Items list HTML
+      const list = document.getElementById('cart-items-list');
+      if (cart.length === 0) {
+        list.innerHTML = `
+          <div class="text-center py-12 space-y-3">
+            <span class="text-4xl">🍜</span>
+            <p class="text-sm text-ivory/60">Your tasting box is empty.</p>
+            <button onclick="closeCart()" class="text-xs text-imperial-gold font-bold uppercase tracking-wider">Browse Flavours</button>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = cart.map((item, index) => {
+        const flavour = FLAVOURS.find(f => f.id === item.flavourId) || FLAVOURS[0];
+        return `
+          <div class="flex items-center gap-3 bg-obsidian p-3 rounded-2xl border border-imperial-gold/20">
+            <img src="${flavour.boxImage}" class="w-16 h-16 rounded-xl object-cover border border-white/10">
+            <div class="flex-1 text-left">
+              <h4 class="font-heading text-sm font-bold text-ivory leading-tight">${flavour.nameEn}</h4>
+              <span class="text-[10px] text-imperial-gold font-serif-sc capitalize">${item.noodleType.replace(/-/g, ' ')}</span>
+              <div class="text-xs font-bold text-imperial-lightGold mt-1">$${(item.unitPrice * item.quantity).toFixed(2)}</div>
+            </div>
+            <div class="flex items-center border border-imperial-gold/30 rounded-lg bg-obsidian-light overflow-hidden">
+              <button onclick="updateCartQty(${index}, -1)" class="px-2 py-1 text-ivory hover:bg-imperial-crimson/30">-</button>
+              <span class="px-2 py-1 text-xs font-bold text-ivory">${item.quantity}</span>
+              <button onclick="updateCartQty(${index}, 1)" class="px-2 py-1 text-ivory hover:bg-imperial-crimson/30">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openCart() {
+      soundFx.playLacquerPress();
+      renderCart();
+      document.getElementById('cart-drawer-overlay').classList.remove('hidden');
+      document.getElementById('cart-drawer').classList.remove('translate-x-full');
+    }
+
+    function closeCart() {
+      soundFx.playBambooClick();
+      document.getElementById('cart-drawer-overlay').classList.add('hidden');
+      document.getElementById('cart-drawer').classList.add('translate-x-full');
+    }
+
+    function triggerCheckout() {
+      soundFx.playSealStamp();
+      closeCart();
+      document.getElementById('checkout-modal-overlay').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      soundFx.playBambooClick();
+      document.getElementById('checkout-modal-overlay').classList.add('hidden');
+    }
+
+    // =========================================================================
+    // F. INGREDIENTS ORBITAL INTERACTION
+    // =========================================================================
+    function renderIngredients() {
+      const container = document.getElementById('ingredient-orbit-container');
+      if (!container) return;
+
+      const radius = 150; // Orbit distance in pixels
+      container.innerHTML = INGREDIENTS.map((ing, i) => {
+        const rad = (ing.angle * Math.PI) / 180;
+        const left = 50 + 40 * Math.cos(rad);
+        const top = 50 + 40 * Math.sin(rad);
+
+        return `
+          <button 
+            onclick="selectIngredient(${i})"
+            onmouseenter="selectIngredient(${i})"
+            style="left: ${left}%; top: ${top}%; transform: translate(-50%, -50%);"
+            class="ingredient-btn pointer-events-auto absolute p-3 rounded-2xl bg-obsidian/90 border border-imperial-gold/40 shadow-2xl backdrop-blur-md flex items-center gap-2 hover:scale-110 hover:border-imperial-gold hover:bg-imperial-crimson/30 transition-all duration-300 focus:outline-none group">
+            <span class="text-xl group-hover:animate-bounce">${ing.icon}</span>
+            <div class="hidden sm:block text-left">
+              <div class="text-[10px] font-bold text-ivory font-serif-sc">${ing.nameCn}</div>
+              <div class="text-[8px] text-imperial-gold">${ing.nameEn.split(' ')[0]}</div>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      selectIngredient(0);
+    }
+
+    function selectIngredient(index) {
+      soundFx.playBambooClick();
+      const ing = INGREDIENTS[index];
+      document.getElementById('active-ing-category').innerText = ing.categoryEn;
+      document.getElementById('active-ing-icon').innerText = ing.icon;
+      document.getElementById('active-ing-name').innerText = ing.nameEn;
+      document.getElementById('active-ing-pinyin').innerText = `${ing.nameCn} · ${ing.pinyin}`;
+      document.getElementById('active-ing-origin').innerText = ing.originEn;
+      document.getElementById('active-ing-aroma').innerText = ing.aromaProfileEn;
+      document.getElementById('active-ing-desc').innerText = ing.descriptionEn;
+    }
+
+    // =========================================================================
+    // G. 3-MINUTE COOKING TIMER MINI-APP
+    // =========================================================================
+    let timerSeconds = 180;
+    let timerInterval = null;
+    let isTimerRunning = false;
+
+    const COOKING_STEPS = [
+      { maxSec: 180, minSec: 140, label: 'Step 1: Rolling Boil', desc: 'Bring 500ml of pure water to a vigorous rolling boil in your favorite saucepan.' },
+      { maxSec: 140, minSec: 60, label: 'Step 2: Drop & Swirl', desc: 'Gently drop hand-pulled noodles. Swirl with wooden chopsticks for 80 seconds.' },
+      { maxSec: 60, minSec: 10, label: 'Step 3: Pour Imperial Broth', desc: 'Empty the 18-hour bone broth reduction sachet into the pot and stir smoothly.' },
+      { maxSec: 10, minSec: 0, label: 'Step 4: Flash-Fired Finish', desc: 'Drizzle flash-fired chili oil and sprinkle freeze-dried scallions. Serve steaming hot!' }
+    ];
+
+    function toggleCookingTimer() {
+      if (isTimerRunning) {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        document.getElementById('timer-btn-text').innerText = 'Resume Boil Ritual';
+        document.getElementById('timer-btn-icon').innerText = '▶';
+      } else {
+        soundFx.playBambooClick();
+        isTimerRunning = true;
+        document.getElementById('timer-btn-text').innerText = 'Pause Ritual';
+        document.getElementById('timer-btn-icon').innerText = '⏸';
+
+        timerInterval = setInterval(() => {
+          timerSeconds--;
+          if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            timerSeconds = 0;
+            soundFx.playChimeGong();
+            document.getElementById('timer-step-label').innerText = '✦ Imperial Feast is Ready!';
+            document.getElementById('timer-step-desc').innerText = 'Your noodles are cooked to absolute perfection. Enjoy hot!';
+            document.getElementById('timer-btn-text').innerText = 'Ritual Completed';
+          }
+          updateTimerDisplay();
+        }, 1000);
+      }
+    }
+
+    function resetCookingTimer() {
+      soundFx.playBambooClick();
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      timerSeconds = 180;
+      document.getElementById('timer-btn-text').innerText = 'Begin 3-Min Boil Ritual';
+      document.getElementById('timer-btn-icon').innerText = '▶';
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      document.getElementById('timer-display').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+      // Update circular dashoffset
+      const totalSec = 180;
+      const circumference = 264;
+      const progress = (totalSec - timerSeconds) / totalSec;
+      document.getElementById('timer-progress-circle').style.strokeDashoffset = circumference * (1 - progress);
+
+      // Find current step
+      const currentStep = COOKING_STEPS.find(s => timerSeconds <= s.maxSec && timerSeconds > s.minSec);
+      if (currentStep) {
+        document.getElementById('timer-step-label').innerText = currentStep.label;
+        document.getElementById('timer-step-desc').innerText = currentStep.desc;
+      }
+    }
+
+    // =========================================================================
+    // H. FLAVOUR DETAILS MODAL
+    // =========================================================================
+    let modalFlavourIndex = 0;
+    function openFlavourModal(index) {
+      soundFx.playBambooClick();
+      modalFlavourIndex = index;
+      const f = FLAVOURS[index];
+      document.getElementById('modal-flavour-tag').innerText = f.tagEn;
+      document.getElementById('modal-flavour-name').innerText = f.nameEn;
+      document.getElementById('modal-flavour-pinyin').innerText = f.nameCn + ' · ' + f.pinyin;
+      document.getElementById('modal-flavour-story').innerText = f.heritageStoryEn;
+      document.getElementById('modal-price').innerText = '$' + f.price.toFixed(2);
+
+      document.getElementById('modal-tasting-notes').innerHTML = f.tastingNotesEn.map(n => `
+        <span class="px-3 py-1 rounded-full bg-imperial-crimson/20 border border-imperial-crimson/40 text-xs font-serif-sc text-imperial-lightGold font-semibold">
+          ✦ ${n}
+        </span>
+      `).join('');
+
+      document.getElementById('modal-ingredients-list').innerHTML = f.ingredientsListEn.map(ing => `
+        <li class="py-0.5">${ing}</li>
+      `).join('');
+
+      document.getElementById('flavour-modal-overlay').classList.remove('hidden');
+      document.getElementById('flavour-modal').classList.remove('hidden');
+    }
+
+    function closeFlavourModal() {
+      soundFx.playBambooClick();
+      document.getElementById('flavour-modal-overlay').classList.add('hidden');
+      document.getElementById('flavour-modal').classList.add('hidden');
+    }
+
+    function addModalFlavourToCart() {
+      soundFx.playLacquerPress();
+      const f = FLAVOURS[modalFlavourIndex];
+      addToCartState(f.id, 'hand-pulled-ribbon', 1, f.price);
+      closeFlavourModal();
+      openCart();
+    }
+
+    // =========================================================================
+    // I. CANVAS STEAM PARTICLES ENGINE
+    // =========================================================================
+    function initSteamCanvas() {
+      const canvas = document.getElementById('steam-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const resize = () => {
+        canvas.width = canvas.parentElement.clientWidth || 500;
+        canvas.height = canvas.parentElement.clientHeight || 500;
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      const particles = [];
+
+      function addParticle() {
+        const w = canvas.width;
+        const h = canvas.height;
+        particles.push({
+          x: w * 0.5 + (Math.random() - 0.5) * (w * 0.3),
+          y: h * 0.75 + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: -(Math.random() * 0.6 + 0.6),
+          size: Math.random() * 15 + 20,
+          growth: Math.random() * 0.2 + 0.25,
+          opacity: 0,
+          maxOpacity: Math.random() * 0.15 + 0.08,
+          life: 0,
+          maxLife: Math.random() * 100 + 120,
+        });
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (particles.length < 22 && Math.random() < 0.3) addParticle();
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.life++;
+          p.x += p.vx + Math.sin(p.life * 0.03) * 0.2;
+          p.y += p.vy;
+          p.size += p.growth;
+
+          const prog = p.life / p.maxLife;
+          p.opacity = prog < 0.3 ? (prog / 0.3) * p.maxOpacity : (1 - prog) * p.maxOpacity;
+
+          if (p.life >= p.maxLife || p.opacity <= 0) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+          grad.addColorStop(0, `rgba(255, 245, 230, ${p.opacity})`);
+          grad.addColorStop(0.6, `rgba(240, 225, 205, ${p.opacity * 0.4})`);
+          grad.addColorStop(1, 'rgba(240, 225, 205, 0)');
+
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    // =========================================================================
+    // J. LANGUAGE TOGGLE & TRANSLATIONS
+    // =========================================================================
+    const I18N = {
+      'en': {
+        'nav.flavours': 'Flavours',
+        'nav.heritage': 'Heritage',
+        'nav.packaging': 'Packaging',
+        'nav.ingredients': 'Ingredients',
+        'nav.ritual': '3-Min Ritual',
+        'nav.brandStory': 'Craft Story',
+        'nav.box': 'Tasting Box',
+        'hero.badge': 'Imperial Master Heritage · 18h Bone Broth',
+        'hero.titleLine1': 'CRAFTED FROM HERITAGE,',
+        'hero.titleLine2': 'FIRED IN FLAVOUR',
+        'hero.subtitle': 'Artisan hand-pulled noodles, 18-hour slow-simmered bone broth, and flash-fired Sichuan aromatics. Taste the street-food heritage in modern luxury packaging.',
+        'hero.ctaPrimary': 'Taste the Tradition',
+        'hero.ctaSecondary': 'Explore 5 Flavours',
+        'flavours.badge': 'THE FIVE MASTER RECIPES',
+        'flavours.heading': 'THE FIVE REALMS OF BROTH & SPICE',
+        'flavours.subheading': 'Five distinct regional master recipes, each balanced to perfection through centuries of street heritage.',
+        'heritage.tag': 'FOUR CENTURIES OF CRAFTSMANSHIP',
+        'heritage.heading': '匠心四艺 · 传世之道',
+        'heritage.subheading': 'The four sacred rituals that transform simple high-protein wheat and spring water into unbroken strands of imperial silk.',
+        'product.badge': 'SKEUOMORPHIC PACKAGING EXPERIENCE',
+        'product.title': 'THE IMPERIAL PACKAGING SUITE',
+        'product.subtitle': 'Tactile luxury packaging designed to preserve freshly hand-pulled wheat silk and liquid bone broth.',
+        'product.spice': 'Spice Level',
+        'product.numbing': 'Mala Numbing',
+        'product.chooseNoodle': 'Select Noodle Thickness',
+        'product.calories': 'Calories',
+        'product.protein': 'Protein',
+        'product.cookTime': 'Boil Time',
+        'product.sodium': 'Preservatives',
+        'product.addToCart': 'Add to Imperial Box',
+        'ingredients.tag': 'TERROIR & PROVENANCE',
+        'ingredients.heading': 'HARMONIOUS ALCHEMY',
+        'ingredients.subheading': 'Hover or tap each raw element to witness how high-altitude volcanic soils and sun-cured spices awaken the master broth.',
+        'ritual.tag': 'THE 3-MINUTE TEMPLE PROTOCOL',
+        'ritual.heading': 'THE THREE-MINUTE COOKING ALTAR',
+        'ritual.subheading': 'Follow the ancient temple steps to summon restaurant-grade noodles at home with our live companion timer.',
+        'ritual.startTimer': 'Begin 3-Min Boil Ritual',
+        'ritual.resetTimer': 'Reset',
+        'cta.title': 'Bring the Taste of China Home.',
+        'cta.subtitle': 'Hand-pulled wheat silk. 18-hour clarified broth. Flash-fired Sichuan oil. Delivered to your doorstep in 48 hours.',
+        'cta.order': 'Order Signature Tasting Box',
+        'cart.title': 'Your Imperial Tasting Box',
+        'cart.subtotal': 'Subtotal',
+        'cart.shipping': 'Imperial Express Delivery',
+        'cart.free': 'FREE',
+        'cart.total': 'Total',
+        'cart.checkout': 'Proceed to Secure Checkout',
+        'footer.newsletterTitle': 'Imperial Tasting Club',
+        'footer.newsletterDesc': 'Subscribe to receive secret limited broth drops and seasonal recipes.',
+        'footer.newsletterBtn': 'Seal & Subscribe'
+      },
+      'zh-CN': {
+        'nav.flavours': '五行风味',
+        'nav.heritage': '非遗匠心',
+        'nav.packaging': '御品包装',
+        'nav.ingredients': '本草调味',
+        'nav.ritual': '三分煮诀',
+        'nav.brandStory': '品牌故事',
+        'nav.box': '品鉴盒',
+        'hero.badge': '非遗大师古法传承 · 十八小时慢火吊汤',
+        'hero.titleLine1': '传承千载匠心，',
+        'hero.titleLine2': '熬就一碗至味',
+        'hero.subtitle': '精选手工高筋拉面，十八小时真骨浓汤慢熬，二百度烈火淬炼红油。将百年市井烟火，凝练入当代奢雅礼盒。',
+        'hero.ctaPrimary': '品味传世至味',
+        'hero.ctaSecondary': '探索五款风味',
+        'flavours.badge': '五大师传世秘谱',
+        'flavours.heading': '五行风味 · 蜀道京华',
+        'flavours.subheading': '融汇川蜀、三秦、京华五大地道大师秘谱，五味调和，天人相应。',
+        'heritage.tag': '四百年非遗手作哲学',
+        'heritage.heading': '匠心四艺 · 传世之道',
+        'heritage.subheading': '严守醒、拉、吊、淬四道古法工序，将高山泉水与高筋麦芯凝练为连绵不绝的黄金丝缕。',
+        'product.badge': '触感奢雅包装体验',
+        'product.title': '尊享御品礼盒',
+        'product.subtitle': '精工触感纸盒，充氮宇航锁鲜，完整保留手拉麦丝筋骨与原汤精华。',
+        'product.spice': '辣度指数',
+        'product.numbing': '麻韵等级',
+        'product.chooseNoodle': '选择面条形态',
+        'product.calories': '热量',
+        'product.protein': '优质蛋白',
+        'product.cookTime': '建议沸水时间',
+        'product.sodium': '防腐剂',
+        'product.addToCart': '收入品鉴礼盒',
+        'ingredients.tag': '原产地道本草',
+        'ingredients.heading': '本草调味 · 天地调和',
+        'ingredients.subheading': '轻触悬浮原料，感受高原贡椒与日晒烈火如何唤醒一碗醇厚原汤。',
+        'ritual.tag': '三分钟案前御膳',
+        'ritual.heading': '三分煮面诀 · 案前御膳',
+        'ritual.subheading': '严守古法温控时序，三分钟在家还原大厨堂食级美味。',
+        'ritual.startTimer': '开启3分钟煮面仪式',
+        'ritual.resetTimer': '重置',
+        'cta.title': '将传世至味，带回案前。',
+        'cta.subtitle': '手作麦丝 · 18小时高汤 · 泼油赤焰 · 48小时鲜达。',
+        'cta.order': '立即定制专属礼盒',
+        'cart.title': '您的专属品鉴盒',
+        'cart.subtotal': '商品小计',
+        'cart.shipping': '顺丰特快配送',
+        'cart.free': '免费包邮',
+        'cart.total': '应付总额',
+        'cart.checkout': '安全结算',
+        'footer.newsletterTitle': '加入御面坊雅集',
+        'footer.newsletterDesc': '第一时间品鉴限量节气高汤与主厨私房菜谱。',
+        'footer.newsletterBtn': '盖章订阅'
+      },
+      'zh-TW': {
+        'nav.flavours': '五行風味',
+        'nav.heritage': '非遺匠心',
+        'nav.packaging': '御品包裝',
+        'nav.ingredients': '本草調味',
+        'nav.ritual': '三分煮訣',
+        'nav.brandStory': '品牌故事',
+        'nav.box': '品鑑盒',
+        'hero.badge': '非遺大師古法傳承 · 十八小時慢火吊湯',
+        'hero.titleLine1': '傳承千載匠心，',
+        'hero.titleLine2': '熬就一碗至味',
+        'hero.subtitle': '精選手工高筋拉麵，十八小時真骨濃湯慢熬，二百度烈火淬煉紅油。將百年市井煙火，凝練入當代奢雅禮盒。',
+        'hero.ctaPrimary': '品味傳世至味',
+        'hero.ctaSecondary': '探索五款風味',
+        'flavours.badge': '五大師傳世秘譜',
+        'flavours.heading': '五行風味 · 蜀道京華',
+        'flavours.subheading': '融匯川蜀、三秦、京華五大地道大師秘譜，五味調和，天人相應。',
+        'heritage.tag': '四百年非遺手作哲學',
+        'heritage.heading': '匠心四藝 · 傳世之道',
+        'heritage.subheading': '嚴守醒、拉、吊、淬四道古法工序，將高山泉水與高筋麥芯凝練為連綿不絕的黃金絲縷。',
+        'product.badge': '觸感奢雅包裝體驗',
+        'product.title': '尊享御品禮盒',
+        'product.subtitle': '精工觸感紙盒，充氮宇航鎖鮮，完整保留手拉麥絲筋骨與原湯精華。',
+        'product.spice': '辣度指數',
+        'product.numbing': '麻韻等級',
+        'product.chooseNoodle': '選擇麵條形態',
+        'product.calories': '熱量',
+        'product.protein': '優質蛋白',
+        'product.cookTime': '建議沸水時間',
+        'product.sodium': '防腐劑',
+        'product.addToCart': '收入品鑑禮盒',
+        'ingredients.tag': '原產地道本草',
+        'ingredients.heading': '本草調味 · 天地調和',
+        'ingredients.subheading': '輕觸懸浮原料，感受高原貢椒與日曬烈火如何喚醒一碗醇厚原湯。',
+        'ritual.tag': '三分鐘案前御膳',
+        'ritual.heading': '三分煮麵訣 · 案前御膳',
+        'ritual.subheading': '嚴守古法溫控時序，三分鐘在家還原大廚堂食級美味。',
+        'ritual.startTimer': '開啟3分鐘煮麵儀式',
+        'ritual.resetTimer': '重置',
+        'cta.title': '將傳世至味，帶回案前。',
+        'cta.subtitle': '手作麥絲 · 18小時高湯 · 潑油赤焰 · 48小時鮮達。',
+        'cta.order': '立即定制專屬禮盒',
+        'cart.title': '您的專屬品鑑盒',
+        'cart.subtotal': '商品小計',
+        'cart.shipping': '順豐特快配送',
+        'cart.free': '免費包郵',
+        'cart.total': '應付總額',
+        'cart.checkout': '安全結算',
+        'footer.newsletterTitle': '加入御麵坊雅集',
+        'footer.newsletterDesc': '第一時間品鑑限量節氣高湯與主廚私房菜譜。',
+        'footer.newsletterBtn': '蓋章訂閱'
+      }
+    };
+
+    function toggleLangMenu() {
+      document.getElementById('lang-dropdown').classList.toggle('hidden');
+    }
+
+    function setLanguage(lang) {
+      soundFx.playBambooClick();
+      currentLang = lang;
+      document.getElementById('lang-label').innerText = lang === 'en' ? 'EN' : lang === 'zh-CN' ? '简' : '繁';
+      document.getElementById('lang-dropdown').classList.add('hidden');
+
+      // Update all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key]) {
+          el.innerText = I18N[lang][key];
+        }
+      });
+
+      renderFlavours();
+      renderIngredients();
+      renderCart();
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      soundFx.playSealStamp();
+      alert('🏮 Welcome to the Imperial Tasting Society! Secret broths will arrive in your inbox.');
+      e.target.reset();
+    }
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderFlavours();
+      renderIngredients();
+      renderCart();
+      initSteamCanvas();
+    });
+  </script>
+</body>
+
+</html>

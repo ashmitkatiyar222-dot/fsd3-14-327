@@ -11,6 +11,7 @@ npm node package manager
 500 internal server error
 401 un authorized
 403 forbidden
+<<<<<<< HEAD
 
 
 api is of 4 types 
@@ -22,3 +23,5 @@ DELETE-Delete
 
 api can be responsed by server, status code and json data
 api generally start with API/v1/products , API/v1/products/2169, API/v1/users, API/v1/users/mohan, API/v1/product?$=mobile
+=======
+>>>>>>> 1e1ec8f5b3b62f795d8820aa3f5bd09781b806e3
