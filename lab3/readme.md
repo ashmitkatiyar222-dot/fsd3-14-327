@@ -24,4 +24,7 @@ DELETE-Delete
 api can be responsed by server, status code and json data
 api generally start with API/v1/products , API/v1/products/2169, API/v1/users, API/v1/users/mohan, API/v1/product?$=mobile
 =======
->>>>>>> 1e1ec8f5b3b62f795d8820aa3f5bd09781b806e3
+
+1/09/26
+
+we learn about routing webpages also content-type for html-data,json-data,plain text.

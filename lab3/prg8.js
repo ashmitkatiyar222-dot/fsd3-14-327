@@ -24,12 +24,13 @@ const server = http.createServer(async (req, res) => {
         const data = createReadStream("product.html");
         data.pipe(res);
     }else{
-        <h1>Home Page</h1>
+
+       fs.writeFile("home.html", "<h1>Home Page</h1>");
     }
     }
 
 );
-
-server.listen(3000, () => {
-    console.log("Server is running...");
+const PORT = 3001;
+server.listen(PORT, () => {
+    console.log(`server is running on http://localhost:${PORT}`);
 });

@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "brand": "Apple",
+    "model": "iPhone 17",
+    "price": 79999,
+    "storage": "128GB",
+    "ram": "8GB",
+    "display": "6.3-inch OLED",
+    "camera": "48MP + 48MP",
+    "battery": "3600mAh",
+    "os": "iOS 26"
+  },
+  {
+    "id": 2,
+    "brand": "Samsung",
+    "model": "Galaxy S26",
+    "price": 74999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.2-inch AMOLED",
+    "camera": "50MP + 12MP + 10MP",
+    "battery": "4000mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 3,
+    "brand": "OnePlus",
+    "model": "OnePlus 14",
+    "price": 69999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.78-inch AMOLED",
+    "camera": "50MP + 50MP + 8MP",
+    "battery": "6000mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 4,
+    "brand": "Google",
+    "model": "Pixel 10",
+    "price": 79999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.3-inch OLED",
+    "camera": "50MP + 48MP",
+    "battery": "4700mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 5,
+    "brand": "Xiaomi",
+    "model": "Xiaomi 16",
+    "price": 59999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.67-inch AMOLED",
+    "camera": "50MP + 50MP + 50MP",
+    "battery": "5500mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 6,
+    "brand": "Nothing",
+    "model": "Phone 4",
+    "price": 44999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.7-inch OLED",
+    "camera": "50MP + 50MP",
+    "battery": "5000mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 7,
+    "brand": "Vivo",
+    "model": "V60 Pro",
+    "price": 49999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.78-inch AMOLED",
+    "camera": "50MP + 50MP + 8MP",
+    "battery": "6000mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 8,
+    "brand": "Oppo",
+    "model": "Find X9",
+    "price": 64999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.7-inch AMOLED",
+    "camera": "50MP + 50MP + 50MP",
+    "battery": "5800mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 9,
+    "brand": "Motorola",
+    "model": "Edge 70 Pro",
+    "price": 54999,
+    "storage": "256GB",
+    "ram": "12GB",
+    "display": "6.7-inch pOLED",
+    "camera": "50MP + 50MP + 10MP",
+    "battery": "5000mAh",
+    "os": "Android 16"
+  },
+  {
+    "id": 10,
+    "brand": "Realme",
+    "model": "GT 8 Pro",
+    "price": 52999,
+    "storage": "256GB",
+    "ram": "16GB",
+    "display": "6.8-inch AMOLED",
+    "camera": "50MP + 50MP + 50MP",
+    "battery": "6500mAh",
+    "os": "Android 16"
+  }
+]

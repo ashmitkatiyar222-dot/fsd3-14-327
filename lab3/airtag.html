@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTag — Apple</title>
+    <style>
+        /* ==========================================================================
+       RESET & CORE DESIGN TOKENS
+       ========================================================================== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Refined Industrial Palette (No generic purple/blue SaaS aesthetic) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-tertiary: #fbfbfd;
+            --bg-dark: #000000;
+            --bg-dark-surface: #121214;
+            --bg-dark-elevated: #1c1c1e;
+
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --text-inverse: #f5f5f7;
+            --text-inverse-secondary: #a1a1a6;
+
+            --accent-blue: #0071e3;
+            --accent-blue-hover: #0077ed;
+            --accent-green: #30d158;
+            --accent-green-subtle: rgba(48, 209, 88, 0.12);
+
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-medium: rgba(0, 0, 0, 0.14);
+            --border-dark: rgba(255, 255, 255, 0.12);
+
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+            --container-max: 1140px;
+            --container-wide: 1280px;
+            --container-narrow: 840px;
+
+            --transition-smooth: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+        }
+
+        html {
+            font-family: var(--font-stack);
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-color: var(--bg-primary);
+        }
+
+        ::selection {
+            background-color: #d2e3fc;
+            color: #1d1d1f;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* Container Utilities */
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .container-wide {
+            width: 100%;
+            max-width: var(--container-wide);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .container-narrow {
+            width: 100%;
+            max-width: var(--container-narrow);
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        /* ==========================================================================
+       TYPOGRAPHY SYSTEM
+       ========================================================================== */
+        .eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .eyebrow-accent {
+            color: var(--accent-blue);
+        }
+
+        .hero-headline {
+            font-size: clamp(38px, 6vw, 68px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+        }
+
+        .section-headline {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .section-headline-dark {
+            color: var(--text-inverse);
+        }
+
+        .subheading {
+            font-size: clamp(17px, 2.2vw, 21px);
+            font-weight: 400;
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            color: var(--text-secondary);
+        }
+
+        .body-lead {
+            font-size: 19px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .body-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .meta-text {
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--text-tertiary);
+        }
+
+        /* ==========================================================================
+       BUTTON & ACTION HIERARCHY
+       ========================================================================== */
+        .btn-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Primary CTA */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: var(--accent-blue);
+            border-radius: 980px;
+            transition: background-color var(--transition-smooth), transform var(--transition-smooth);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-blue-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* Secondary CTA */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 22px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            background-color: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-medium);
+            border-radius: 980px;
+            transition: background-color var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+
+        /* Dark Mode Actions */
+        .btn-primary-dark {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .btn-primary-dark:hover {
+            background-color: #e5e5e7;
+        }
+
+        .btn-secondary-dark {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary-dark:hover {
+            background-color: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* ==========================================================================
+       NAVIGATION
+       ========================================================================== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            transition: background var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 52px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .nav-brand svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            transition: color var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-buy-btn {
+            height: 28px;
+            padding: 0 14px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: var(--accent-blue);
+            border-radius: 980px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-smooth);
+        }
+
+        .nav-buy-btn:hover {
+            background-color: var(--accent-blue-hover);
+        }
+
+        .bag-icon-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--text-primary);
+            padding: 6px;
+        }
+
+        .bag-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--text-primary);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0);
+            transition: transform var(--transition-spring);
+        }
+
+        .bag-badge.show {
+            transform: scale(1);
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background-color: var(--text-primary);
+            transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+        }
+
+        .mobile-menu-drawer {
+            display: none;
+            position: fixed;
+            top: 53px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            padding: 32px 24px;
+            z-index: 999;
+            flex-direction: column;
+            gap: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .mobile-menu-drawer.open {
+            display: flex;
+        }
+
+        .mobile-menu-link {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        /* ==========================================================================
+       HERO SECTION & 3D CSS AIRTAG
+       ========================================================================== */
+        .hero-section {
+            padding-top: clamp(48px, 8vw, 84px);
+            padding-bottom: clamp(60px, 10vw, 110px);
+            text-align: center;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .hero-headline {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        .hero-subheading {
+            max-width: 620px;
+            margin: 0 auto 32px auto;
+        }
+
+        .hero-visual-wrapper {
+            margin-top: 48px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-airtag-stage {
+            position: relative;
+            width: 290px;
+            height: 290px;
+            perspective: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .airtag-3d {
+            width: 240px;
+            height: 240px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: grab;
+        }
+
+        .airtag-3d:active {
+            cursor: grabbing;
+        }
+
+        .airtag-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .airtag-front {
+            background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f7f7f9 45%, #ececee 85%, #d8d8de 100%);
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.9),
+                inset 0 -3px 8px rgba(0, 0, 0, 0.15),
+                0 20px 40px -10px rgba(0, 0, 0, 0.22),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .airtag-front::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 12px;
+            width: 60px;
+            height: 30px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.8) 0%, transparent 80%);
+            transform: rotate(-35deg);
+            pointer-events: none;
+        }
+
+        .airtag-engraving {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #65656a;
+            text-transform: uppercase;
+            user-select: none;
+            font-family: var(--font-stack);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 0 -1px 0 rgba(0, 0, 0, 0.15);
+            transition: opacity 0.2s ease;
+        }
+
+        .airtag-back {
+            transform: rotateY(180deg);
+            background:
+                radial-gradient(circle at 50% 50%, #fdfdfe 0%, #e2e4e8 35%, #b4b8be 65%, #d8dbe0 80%, #9fa4ac 100%);
+            box-shadow:
+                inset 0 0 0 4px #cfd2d7,
+                inset 0 3px 6px rgba(255, 255, 255, 0.9),
+                inset 0 -4px 10px rgba(0, 0, 0, 0.3),
+                0 20px 40px -10px rgba(0, 0, 0, 0.22);
+            border: 1px solid #c0c4cb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .airtag-back-content {
+            width: 88%;
+            height: 88%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, #ffffff 0%, #e8eaee 35%, #c8ccd2 70%, #dfe2e7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .airtag-back-svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .airtag-shadow {
+            width: 220px;
+            height: 24px;
+            margin-top: 24px;
+            background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.05) 50%, transparent 75%);
+            border-radius: 50%;
+            filter: blur(4px);
+        }
+
+        .airtag-view-controls {
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid var(--border-medium);
+            border-radius: 980px;
+            padding: 3px;
+            margin-top: 20px;
+            gap: 4px;
+        }
+
+        .view-control-btn {
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-radius: 980px;
+            transition: all var(--transition-smooth);
+        }
+
+        .view-control-btn.active {
+            background: var(--text-primary);
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+       PRODUCT STORY / EDITORIAL
+       ========================================================================== */
+        .story-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background-color: var(--bg-primary);
+        }
+
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .story-text-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .story-metrics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 24px;
+            margin-top: 16px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .story-visual-column {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 480px;
+            border: 1px solid var(--border-light);
+        }
+
+        .exploded-stack {
+            width: 100%;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+
+        .stack-layer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: transform var(--transition-smooth), border-color var(--transition-smooth);
+        }
+
+        .stack-layer:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .stack-layer-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stack-layer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .stack-layer-desc {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .stack-layer-badge {
+            font-size: 11px;
+            font-family: var(--font-mono);
+            padding: 3px 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+       INTERACTIVE FIND EXPERIENCE (RADAR SIMULATOR)
+       ========================================================================== */
+        .radar-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background-color: var(--bg-dark);
+            color: var(--text-inverse);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .radar-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 48px auto;
+        }
+
+        .radar-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+            background: var(--bg-dark-surface);
+            border: 1px solid var(--border-dark);
+            border-radius: 20px;
+            padding: clamp(28px, 4vw, 48px);
+        }
+
+        .radar-screen {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 420px;
+            margin: 0 auto;
+            background: radial-gradient(circle at 50% 50%, #161a1d 0%, #0d0f11 100%);
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .radar-grid-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(255, 255, 255, 0.09);
+        }
+
+        .radar-ring-1 {
+            width: 30%;
+            height: 30%;
+        }
+
+        .radar-ring-2 {
+            width: 60%;
+            height: 60%;
+        }
+
+        .radar-ring-3 {
+            width: 90%;
+            height: 90%;
+        }
+
+        .radar-axis-x {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .radar-axis-y {
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .radar-beam {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            right: 0;
+            transform-origin: bottom left;
+            background: conic-gradient(from 0deg at 0% 100%, rgba(48, 209, 88, 0.3) 0deg, transparent 60deg);
+            border-radius: 100% 0 0 0;
+            animation: radarSweep 3.5s linear infinite;
+            display: none;
+        }
+
+        .radar-beam.active {
+            display: block;
+        }
+
+        @keyframes radarSweep {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .radar-target {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 10;
+        }
+
+        .radar-arrow-wrapper {
+            width: 72px;
+            height: 72px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            box-shadow: 0 0 24px rgba(48, 209, 88, 0.5);
+            transition: transform 0.5s ease;
+        }
+
+        .radar-arrow-svg {
+            width: 36px;
+            height: 36px;
+            fill: currentColor;
+        }
+
+        .radar-distance-readout {
+            margin-top: 14px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            font-variant-numeric: tabular-nums;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .radar-direction-tag {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent-green);
+            letter-spacing: 0.02em;
+        }
+
+        .radar-console {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .radar-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 980px;
+            width: fit-content;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .status-dot.pulsing {
+            animation: statusPulse 1.5s infinite;
+        }
+
+        @keyframes statusPulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.15);
+            }
+
+            100% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+        }
+
+        .radar-console-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sound-ripple-visual {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 24px;
+            margin-left: 8px;
+        }
+
+        .sound-bar {
+            width: 3px;
+            background: currentColor;
+            border-radius: 2px;
+            height: 6px;
+            transition: height 0.15s ease;
+        }
+
+        .playing .sound-bar:nth-child(1) {
+            animation: soundAnim 0.4s infinite alternate ease-in-out;
+        }
+
+        .playing .sound-bar:nth-child(2) {
+            animation: soundAnim 0.4s 0.1s infinite alternate ease-in-out;
+        }
+
+        .playing .sound-bar:nth-child(3) {
+            animation: soundAnim 0.4s 0.2s infinite alternate ease-in-out;
+        }
+
+        .playing .sound-bar:nth-child(4) {
+            animation: soundAnim 0.4s 0.15s infinite alternate ease-in-out;
+        }
+
+        @keyframes soundAnim {
+            0% {
+                height: 4px;
+            }
+
+            100% {
+                height: 20px;
+            }
+        }
+
+        /* ==========================================================================
+       EDITORIAL FEATURES SECTION
+       ========================================================================== */
+        .features-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background-color: var(--bg-primary);
+        }
+
+        .features-intro {
+            max-width: 640px;
+            margin-bottom: 64px;
+        }
+
+        /* Precision Finding Split Block */
+        .feature-split-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            padding-bottom: 80px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .feature-split-media {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 380px;
+            border: 1px solid var(--border-light);
+        }
+
+        /* Full-Width Network Metric Block */
+        .feature-fullwidth-block {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .network-visual-strip {
+            background: linear-gradient(180deg, #1d1d1f 0%, #121214 100%);
+            border-radius: 16px;
+            padding: clamp(36px, 5vw, 64px);
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            margin-top: 32px;
+        }
+
+        .network-mesh-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.15;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .network-content-layout {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .network-stat-number {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        /* Asymmetric Technical Duo */
+        .feature-asymmetric-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .feature-col-item {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feature-col-item .visual-box {
+            background: var(--bg-secondary);
+            border-radius: 14px;
+            padding: 32px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 260px;
+        }
+
+        /* Horizontal Info Rows */
+        .feature-rows-section {
+            padding-top: 80px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 240px 1fr 1fr;
+            gap: 32px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border-light);
+            align-items: baseline;
+        }
+
+        .info-row-tag {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .info-row-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .info-row-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+       HOW IT WORKS (01, 02, 03 SEQUENCE)
+       ========================================================================== */
+        .how-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .how-header {
+            margin-bottom: 56px;
+        }
+
+        .steps-sequence {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 36px;
+            position: relative;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 44px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--text-tertiary);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .step-body {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .step-illustration {
+            height: 140px;
+            margin-top: 12px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+       PRODUCT CONFIGURATOR & BUY SECTION
+       ========================================================================== */
+        .buy-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background: var(--bg-primary);
+        }
+
+        .buy-layout {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .buy-sticky-visual {
+            position: sticky;
+            top: 90px;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            padding: 48px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .buy-airtag-render {
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+
+        .buy-engraving-badge {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .buy-config-column {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .pack-selector-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .pack-option-card {
+            border: 2px solid var(--border-medium);
+            border-radius: 12px;
+            padding: 18px 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all var(--transition-smooth);
+            background: #ffffff;
+        }
+
+        .pack-option-card.selected {
+            border-color: var(--accent-blue);
+            background: rgba(0, 113, 227, 0.02);
+        }
+
+        .pack-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pack-option-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .pack-option-price {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .pack-option-saving {
+            font-size: 12px;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .engraving-box {
+            border-top: 1px solid var(--border-light);
+            padding-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .engraving-input-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .engraving-text-input {
+            flex: 1;
+            height: 44px;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            padding: 0 14px;
+            font-size: 15px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: border-color var(--transition-smooth);
+        }
+
+        .engraving-text-input:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .emoji-quick-picks {
+            display: flex;
+            gap: 8px;
+        }
+
+        .emoji-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-smooth);
+        }
+
+        .emoji-btn:hover {
+            transform: scale(1.1);
+            background: #e8e8ed;
+        }
+
+        .buy-action-area {
+            border-top: 1px solid var(--border-light);
+            padding-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .quantity-stepper {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .stepper-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-primary);
+            background: #ffffff;
+            transition: background var(--transition-smooth);
+        }
+
+        .stepper-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .stepper-value {
+            width: 40px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .price-total-display {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .buy-button-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .delivery-perks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .perk-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .perk-line svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: rgba(29, 29, 31, 0.95);
+            backdrop-filter: blur(16px);
+            color: #ffffff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+            pointer-events: none;
+        }
+
+        .toast-notification.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ==========================================================================
+       TECHNICAL SPECIFICATIONS
+       ========================================================================== */
+        .specs-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .specs-header {
+            margin-bottom: 56px;
+        }
+
+        .specs-table {
+            width: 100%;
+            border-top: 1px solid var(--border-medium);
+        }
+
+        .specs-row {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border-light);
+            gap: 32px;
+        }
+
+        .specs-category {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .specs-details {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .specs-bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .specs-bullet-list li {
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .specs-bullet-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-tertiary);
+        }
+
+        /* ==========================================================================
+       FAQ ACCORDION
+       ========================================================================== */
+        .faq-section {
+            padding: clamp(64px, 10vw, 120px) 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .faq-header {
+            margin-bottom: 48px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            transition: color var(--transition-smooth);
+        }
+
+        .faq-question:hover {
+            color: var(--accent-blue);
+        }
+
+        .faq-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--text-tertiary);
+            transition: transform var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 24px;
+            font-size: 15px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+        }
+
+        /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+        .site-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            padding: 48px 0 32px 0;
+            font-size: 12px;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        .footer-footnotes {
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .footer-footnotes p {
+            margin-bottom: 8px;
+        }
+
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .footer-col-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .footer-col-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            transition: color var(--transition-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        .footer-legal-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+        @media (max-width: 992px) {
+
+            .story-layout,
+            .radar-container,
+            .buy-layout,
+            .feature-split-block,
+            .feature-asymmetric-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .network-content-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-sequence {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .info-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .specs-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .buy-sticky-visual {
+                position: static;
+            }
+
+            .footer-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .hero-airtag-stage {
+                width: 220px;
+                height: 220px;
+            }
+
+            .airtag-3d {
+                width: 180px;
+                height: 180px;
+            }
+
+            .pack-selector-group {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================================================
+       STICKY NAVIGATION
+       ========================================================================== -->
+    <header class="site-header" id="siteHeader">
+        <div class="container nav-container">
+            <a href="#" class="nav-brand" aria-label="Apple AirTag">
+                <svg viewBox="0 0 170 170">
+                    <path
+                        d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.03-7.61-7.79-11.73-14.28-5.54-8.81-9.92-18.79-13.14-29.93-3.22-11.14-4.83-21.84-4.83-32.1 0-14.07 3.59-25.99 10.77-35.75 7.18-9.76 16.29-14.77 27.33-15.03 4.35 0 9.49 1.25 15.42 3.75 5.93 2.5 9.76 3.78 11.49 3.83 1.34 0 5.38-1.39 12.12-4.17 6.74-2.77 12.5-3.92 17.28-3.44 12.98.96 23.36 5.86 31.14 14.72-11.19 6.8-16.66 16.03-16.42 27.69.24 9.17 3.79 16.89 10.66 23.16 6.86 6.27 15.1 9.77 24.71 10.51-2.22 6.8-4.87 13.68-7.96 20.65zM119.22 31.84c0-7.39 2.68-14.38 8.04-20.97 5.37-6.59 12.11-10.58 20.24-11.97.13 1.04.2 1.95.2 2.73 0 7.39-2.79 14.47-8.37 21.24-5.58 6.77-12.44 10.74-20.58 11.91-.07-.94-.1-1.78-.1-2.52z" />
+                </svg>
+                <span>AirTag</span>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="#overview" class="nav-link active">Overview</a></li>
+                <li><a href="#radar" class="nav-link">Interactive Radar</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#specs" class="nav-link">Tech Specs</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#buy" class="nav-buy-btn">Buy</a>
+                <a href="#buy" class="bag-icon-wrapper" aria-label="Shopping Bag">
+                    <svg width="15" height="17" viewBox="0 0 15 17" fill="none" stroke="currentColor"
+                        stroke-width="1.2">
+                        <path d="M1.5 5.5H13.5L14.5 15.5H0.5L1.5 5.5Z" />
+                        <path d="M4.5 7.5V3.5C4.5 1.84315 5.84315 0.5 7.5 0.5C9.15685 0.5 10.5 1.84315 10.5 3.5V7.5" />
+                    </svg>
+                    <span class="bag-badge" id="navBagBadge">0</span>
+                </a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div class="mobile-menu-drawer" id="mobileDrawer">
+            <a href="#overview" class="mobile-menu-link">Overview</a>
+            <a href="#radar" class="mobile-menu-link">Interactive Radar</a>
+            <a href="#features" class="mobile-menu-link">Features</a>
+            <a href="#how-it-works" class="mobile-menu-link">How It Works</a>
+            <a href="#specs" class="mobile-menu-link">Technical Specifications</a>
+            <a href="#buy" class="btn-primary" style="margin-top: 16px;">Buy AirTag from ₹3,490</a>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section class="hero-section" id="overview">
+        <div class="container">
+            <div class="hero-content">
+                <p class="eyebrow eyebrow-accent">Precision Tracking</p>
+                <h1 class="hero-headline">AirTag. Lose something? Find it.</h1>
+                <p class="subheading hero-subheading">
+                    Attach one to your keys. Slip another in your backpack. Just like that, they’re on your radar in the
+                    Find My app, right alongside your Apple devices.
+                </p>
+
+                <div class="btn-group">
+                    <a href="#buy" class="btn-primary">Buy AirTag</a>
+                    <a href="#radar" class="btn-secondary">Explore Interactive Demo</a>
+                </div>
+            </div>
+
+            <!-- Studio AirTag Render with Front/Back Interactive Flip -->
+            <div class="hero-visual-wrapper">
+                <div class="hero-airtag-stage">
+                    <div class="airtag-3d" id="heroAirtag">
+                        <!-- Front Polycarbonate Face -->
+                        <div class="airtag-face airtag-front">
+                            <span class="airtag-engraving" id="heroEngravingText">AIR</span>
+                        </div>
+                        <!-- Back Stainless Steel Mirror Face -->
+                        <div class="airtag-face airtag-back">
+                            <div class="airtag-back-content">
+                                <svg class="airtag-back-svg" viewBox="0 0 200 200">
+                                    <!-- Apple Logo Center -->
+                                    <path
+                                        d="M107.5 98.2c-.8 1.9-1.8 3.6-2.9 5.2-1.5 2.2-2.8 3.7-3.7 4.5-1.5 1.4-3.1 2.1-4.8 2.1-1.2 0-2.7-.4-4.4-1.1-1.7-.7-3.3-1.1-4.8-1.1-1.5 0-3.2.4-4.9 1.1-1.7.7-3.2 1.1-4.2 1.1-1.4 0-3-.6-4.8-2-1.2-1-2.5-2.6-3.9-4.8-1.8-2.9-3.3-6.3-4.4-10-1.1-3.7-1.6-7.3-1.6-10.7 0-4.7 1.2-8.7 3.6-11.9 2.4-3.3 5.4-4.9 9.1-5 1.4 0 3.2.4 5.1 1.2 2 .8 3.3 1.3 3.8 1.3.4 0 1.8-.5 4-1.4 2.2-.9 4.2-1.3 5.8-1.1 4.3.3 7.8 2 10.4 4.9-3.7 2.3-5.5 5.3-5.5 9.2.1 3.1 1.3 5.6 3.6 7.7 2.3 2.1 5 3.3 8.2 3.5-.7 2.3-1.6 4.6-2.7 6.9zm-10.4-32.8c0-2.5.9-4.8 2.7-7 1.8-2.2 4-3.5 6.7-4 .1.3.1.6.1.9 0 2.5-.9 4.8-2.8 7.1-1.9 2.3-4.1 3.6-6.9 4-.1-.3-.1-.6-.1-1z"
+                                        fill="#4a4d52" />
+                                    <!-- Curved Perimeter Text -->
+                                    <path id="curve" d="M 100, 100 m -78, 0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"
+                                        fill="transparent" />
+                                    <text font-size="7.5" fill="#63666d" font-weight="600" letter-spacing="1.8"
+                                        font-family="-apple-system, sans-serif">
+                                        <textPath href="#curve" startOffset="0%">
+                                            AIRTAG • DESIGNED BY APPLE IN CALIFORNIA • ASSEMBLED IN CHINA • ULTRA
+                                            WIDEBAND • BLUETOOTH LE • IP67 •
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="airtag-shadow"></div>
+
+                <div class="airtag-view-controls">
+                    <button class="view-control-btn active" id="btnViewFront" onclick="flipAirtag(false)">Front
+                        View</button>
+                    <button class="view-control-btn" id="btnViewBack" onclick="flipAirtag(true)">Stainless Steel
+                        Back</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       PRODUCT STORY / EDITORIAL
+       ========================================================================== -->
+    <section class="story-section">
+        <div class="container">
+            <div class="story-layout">
+                <div class="story-text-column">
+                    <p class="eyebrow">Precision Engineering</p>
+                    <h2 class="section-headline">A little device with a big job.</h2>
+                    <p class="body-lead">
+                        AirTag is designed to keep track of everyday essentials with surgical precision. It sends out a
+                        secure Bluetooth signal that can be detected by nearby devices in the Find My network.
+                    </p>
+                    <p class="body-text">
+                        Engineered with the Apple-designed U1 chip using Ultra Wideband technology, it calculates
+                        precise distance and spatial orientation down to centimeters.
+                    </p>
+
+                    <div class="story-metrics-grid">
+                        <div class="metric-item">
+                            <span class="metric-value">31.9 mm</span>
+                            <span class="metric-label">Compact circular footprint</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">11 grams</span>
+                            <span class="metric-label">Featherweight stainless steel chassis</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">1+ Year</span>
+                            <span class="metric-label">Standard replaceable CR2032 battery</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">IP67</span>
+                            <span class="metric-label">Water & dust submersion rating</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exploded Architecture Stack -->
+                <div class="story-visual-column">
+                    <div class="exploded-stack">
+                        <div class="stack-layer">
+                            <div class="stack-layer-info">
+                                <span class="stack-layer-name">Polished Steel Cap</span>
+                                <span class="stack-layer-desc">Laser-etched stainless steel battery door</span>
+                            </div>
+                            <span class="stack-layer-badge">316L SS</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <div class="stack-layer-info">
+                                <span class="stack-layer-name">CR2032 Lithium Cell</span>
+                                <span class="stack-layer-desc">Over 365 days of continuous operation</span>
+                            </div>
+                            <span class="stack-layer-badge">3.0V</span>
+                        </div>
+
+                        <div class="stack-layer"
+                            style="border-color: rgba(0, 113, 227, 0.4); background: rgba(0, 113, 227, 0.02);">
+                            <div class="stack-layer-info">
+                                <span class="stack-layer-name">Apple U1 Logic Core</span>
+                                <span class="stack-layer-desc">Ultra Wideband & encrypted BLE transceiver</span>
+                            </div>
+                            <span class="stack-layer-badge" style="color: var(--accent-blue);">U1 SIP</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <div class="stack-layer-info">
+                                <span class="stack-layer-name">Acoustic Actuator</span>
+                                <span class="stack-layer-desc">Built-in resonant piezo speaker coil</span>
+                            </div>
+                            <span class="stack-layer-badge">85 dB</span>
+                        </div>
+
+                        <div class="stack-layer">
+                            <div class="stack-layer-info">
+                                <span class="stack-layer-name">Polycarbonate Shell</span>
+                                <span class="stack-layer-desc">Impact-resistant glossy front enclosure</span>
+                            </div>
+                            <span class="stack-layer-badge">IP67</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       INTERACTIVE FIND EXPERIENCE (RADAR SIMULATOR)
+       ========================================================================== -->
+    <section class="radar-section" id="radar">
+        <div class="container">
+            <div class="radar-header">
+                <p class="eyebrow" style="color: var(--accent-green);">Interactive Simulation</p>
+                <h2 class="section-headline section-headline-dark">Ping it. Find it.</h2>
+                <p class="subheading" style="color: var(--text-inverse-secondary); margin-top: 12px;">
+                    Misplaced your keys? Test the real-time Precision Finding interface and audio beacon right in your
+                    browser.
+                </p>
+            </div>
+
+            <div class="radar-container">
+                <!-- Minimal Radar Display Viewport -->
+                <div class="radar-screen" id="radarScreen">
+                    <div class="radar-grid-ring radar-ring-1"></div>
+                    <div class="radar-grid-ring radar-ring-2"></div>
+                    <div class="radar-grid-ring radar-ring-3"></div>
+                    <div class="radar-axis-x"></div>
+                    <div class="radar-axis-y"></div>
+                    <div class="radar-beam" id="radarBeam"></div>
+
+                    <!-- Dynamic Directional Arrow & Target readout -->
+                    <div class="radar-target" id="radarTarget">
+                        <div class="radar-arrow-wrapper" id="radarArrowWrapper">
+                            <svg class="radar-arrow-svg" viewBox="0 0 24 24">
+                                <path d="M12 2L4 20L12 16.5L20 20L12 2Z" />
+                            </svg>
+                        </div>
+                        <div class="radar-distance-readout" id="radarDistance">8 m</div>
+                        <div class="radar-direction-tag" id="radarDirectionTag">Ahead to your right</div>
+                    </div>
+                </div>
+
+                <!-- Control Console -->
+                <div class="radar-console">
+                    <div class="radar-status-pill">
+                        <span class="status-dot pulsing" id="statusDot"></span>
+                        <span id="radarStatusText">Signal Locked — Ultra Wideband</span>
+                    </div>
+
+                    <div>
+                        <h3 style="font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 8px;">Precision
+                            Finding Mode</h3>
+                        <p style="font-size: 15px; color: var(--text-inverse-secondary); line-height: 1.5;">
+                            If your AirTag is nearby, your iPhone can lead you straight to it with Precision Finding.
+                            You'll see the exact distance and direction to head.
+                        </p>
+                    </div>
+
+                    <div class="radar-console-actions">
+                        <button class="btn-primary btn-primary-dark" id="btnFindNearby" onclick="triggerFindNearby()">
+                            <span id="btnFindText">Simulate "Find Nearby"</span>
+                        </button>
+
+                        <button class="btn-secondary btn-secondary-dark" id="btnPlaySound" onclick="triggerPlaySound()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <span>Play Sound</span>
+                            <div class="sound-ripple-visual" id="soundVisualizer">
+                                <div class="sound-bar"></div>
+                                <div class="sound-bar"></div>
+                                <div class="sound-bar"></div>
+                                <div class="sound-bar"></div>
+                            </div>
+                        </button>
+                    </div>
+
+                    <p class="meta-text" style="color: #636366;">
+                        * Precision Finding is compatible with iPhone 11 and later models with U1 chip.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FEATURES SECTION (VARIED EDITORIAL COMPOSITIONS)
+       ========================================================================== -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="features-intro">
+                <p class="eyebrow">Comprehensive Capabilities</p>
+                <h2 class="section-headline">Engineered for everyday peace of mind.</h2>
+            </div>
+
+            <!-- Composition 1: Split Screen (Precision Finding) -->
+            <div class="feature-split-block">
+                <div>
+                    <p class="eyebrow eyebrow-accent">Ultra Wideband</p>
+                    <h3 class="section-headline" style="font-size: 32px; margin-bottom: 16px;">See the distance. Follow
+                        the arrow.</h3>
+                    <p class="body-text">
+                        Precision Finding uses Ultra Wideband technology to accurately measure the distance and
+                        direction between your iPhone and your AirTag. As you move, haptic feedback and visual cues
+                        guide you step by step.
+                    </p>
+                </div>
+                <div class="feature-split-media">
+                    <svg width="220" height="220" viewBox="0 0 120 120" fill="none">
+                        <circle cx="60" cy="60" r="54" stroke="#d2d2d7" stroke-width="1.5" stroke-dasharray="3 3" />
+                        <circle cx="60" cy="60" r="36" stroke="#0071e3" stroke-width="1.5" />
+                        <circle cx="60" cy="60" r="18" fill="#e8f3fc" />
+                        <circle cx="60" cy="60" r="6" fill="#0071e3" />
+                        <path d="M60 20L65 32H55L60 20Z" fill="#30d158" />
+                        <line x1="60" y1="32" x2="60" y2="54" stroke="#30d158" stroke-width="2" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Composition 2: Monumental Full-Width Metric (Find My Network) -->
+            <div class="feature-fullwidth-block">
+                <div>
+                    <p class="eyebrow">Global Mesh Network</p>
+                    <h3 class="section-headline" style="font-size: 32px;">Hundreds of millions of helpers.</h3>
+                </div>
+
+                <div class="network-visual-strip">
+                    <div class="network-mesh-bg"></div>
+                    <div class="network-content-layout">
+                        <div>
+                            <div class="network-stat-number">1 Billion+</div>
+                            <p style="font-size: 18px; font-weight: 500; margin-bottom: 8px;">Active Apple devices in
+                                the Find My network</p>
+                            <p style="font-size: 14px; color: #a1a1a6; line-height: 1.6;">
+                                When you leave something far behind, like at the beach or the gym, the Find My network
+                                helps track down your AirTag. Nearby Apple devices relay its location securely and
+                                anonymously to iCloud.
+                            </p>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.06); padding: 24px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                            <p style="font-size: 13px; font-weight: 600; color: #30d158; margin-bottom: 6px;">END-TO-END
+                                ENCRYPTED</p>
+                            <p style="font-size: 13px; color: #d2d2d7; line-height: 1.5;">
+                                The entire process is encrypted and anonymous. Not even Apple knows the location of your
+                                AirTag or the identity of the device that helps find it.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Composition 3: Asymmetric Technical Duo (Battery & Durability) -->
+            <div class="feature-asymmetric-row">
+                <div class="feature-col-item">
+                    <div class="visual-box">
+                        <svg width="180" height="120" viewBox="0 0 160 100" fill="none">
+                            <!-- Water droplet / IP67 Graphic -->
+                            <path
+                                d="M80 15C80 15 50 55 50 72C50 88.5 63.5 95 80 95C96.5 95 110 88.5 110 72C110 55 80 15 80 15Z"
+                                fill="#e1f0fc" stroke="#0071e3" stroke-width="2" />
+                            <path d="M72 65C72 65 60 75 60 82" stroke="#0071e3" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <h4 style="font-size: 20px; font-weight: 600; color: var(--text-primary);">Splash, water, and dust
+                        resistant.</h4>
+                    <p class="body-text">
+                        Got caught in a downpour? Spilled water on your backpack? AirTag is rated IP67 under IEC
+                        standard 60529 (maximum depth of 1 metre up to 30 minutes).
+                    </p>
+                </div>
+
+                <div class="feature-col-item">
+                    <div class="visual-box">
+                        <svg width="140" height="120" viewBox="0 0 120 100" fill="none">
+                            <!-- CR2032 Battery graphic -->
+                            <circle cx="60" cy="50" r="38" fill="#e8eaed" stroke="#b0b3b8" stroke-width="3" />
+                            <circle cx="60" cy="50" r="32" fill="#f8f9fa" />
+                            <text x="60" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#495057"
+                                font-family="-apple-system, sans-serif">CR2032</text>
+                            <text x="60" y="60" text-anchor="middle" font-size="8" font-weight="600" fill="#6c757d"
+                                font-family="-apple-system, sans-serif">3V +</text>
+                        </svg>
+                    </div>
+                    <h4 style="font-size: 20px; font-weight: 600; color: var(--text-primary);">Long live the battery.
+                    </h4>
+                    <p class="body-text">
+                        AirTag is designed to keep going for more than a full year on a standard, easily replaceable
+                        CR2032 coin cell battery. Your iPhone alerts you when it’s time for a swap.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Composition 4: Horizontal Information Rows (Privacy & Speaker) -->
+            <div class="feature-rows-section">
+                <div class="info-row">
+                    <span class="info-row-tag">Privacy</span>
+                    <div>
+                        <h4 class="info-row-title">Built-in stalking prevention</h4>
+                        <p class="info-row-desc">
+                            Your iPhone detects if an unknown AirTag is traveling with you over time and sends an alert.
+                            If you still can’t locate it, the AirTag will start playing an audible sound.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="info-row-title">No location history stored</h4>
+                        <p class="info-row-desc">
+                            Location data and history are never physically stored on the AirTag itself. All
+                            transmissions through the Find My network remain end-to-end encrypted.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <span class="info-row-tag">Acoustics</span>
+                    <div>
+                        <h4 class="info-row-title">Built-in speaker sound</h4>
+                        <p class="info-row-desc">
+                            Play a sound on the built-in speaker by going to the Items tab in the Find My app, or just
+                            say “Hey Siri, find my keys.”
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="info-row-title">NFC Lost Mode Tap</h4>
+                        <p class="info-row-desc">
+                            When someone finds your lost item, they can simply tap it using an NFC-capable smartphone to
+                            view your custom message and phone number.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       HOW IT WORKS (01, 02, 03 SEQUENCE)
+       ========================================================================== -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <div class="how-header">
+                <p class="eyebrow">Simplicity in Motion</p>
+                <h2 class="section-headline">Three simple steps to find anything.</h2>
+            </div>
+
+            <div class="steps-sequence">
+                <!-- Step 01 -->
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Attach</h3>
+                    <p class="step-body">
+                        Fasten AirTag to your keychain, slide it inside your luggage lining, or slip it into a wallet or
+                        camera bag.
+                    </p>
+                    <div class="step-illustration">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="12" cy="12" r="8" />
+                            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Find</h3>
+                    <p class="step-body">
+                        Open the Find My app on your iPhone, iPad, or Mac to view the live GPS location of your item on
+                        a clear map.
+                    </p>
+                    <div class="step-illustration">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <rect x="5" y="2" width="14" height="20" rx="3" />
+                            <circle cx="12" cy="18" r="1" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Locate</h3>
+                    <p class="step-body">
+                        Follow the Precision Finding directional arrow or trigger the built-in acoustic speaker to guide
+                        you right to it.
+                    </p>
+                    <div class="step-illustration">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M12 2L4 20L12 16.5L20 20L12 2Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       PRODUCT / BUY SECTION WITH LIVE ENGRAVING
+       ========================================================================== -->
+    <section class="buy-section" id="buy">
+        <div class="container">
+            <div class="buy-layout">
+                <!-- Left: Interactive AirTag Configurator View -->
+                <div class="buy-sticky-visual">
+                    <div class="buy-airtag-render">
+                        <div class="airtag-face airtag-front"
+                            style="width: 200px; height: 200px; margin: 0 auto; position: relative;">
+                            <span class="airtag-engraving" id="buyEngravingPreview" style="font-size: 22px;">AIR</span>
+                        </div>
+                    </div>
+                    <div class="buy-engraving-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                        <span>Live Laser Engraving Preview</span>
+                    </div>
+                </div>
+
+                <!-- Right: Purchase Options -->
+                <div class="buy-config-column">
+                    <div>
+                        <p class="eyebrow eyebrow-accent">Customize & Buy</p>
+                        <h2 class="section-headline" style="font-size: 36px; margin-bottom: 8px;">Buy AirTag</h2>
+                        <p class="body-text">Free shipping and free returns on all orders.</p>
+                    </div>
+
+                    <!-- Pack Selector -->
+                    <div>
+                        <label class="eyebrow" style="display: block; margin-bottom: 10px;">Select Quantity Pack</label>
+                        <div class="pack-selector-group">
+                            <div class="pack-option-card selected" id="pack1" onclick="selectPack(1)">
+                                <div class="pack-option-header">
+                                    <span class="pack-option-title">1 Pack</span>
+                                    <span class="pack-option-price">₹3,490</span>
+                                </div>
+                                <span class="meta-text">Single AirTag unit</span>
+                            </div>
+
+                            <div class="pack-option-card" id="pack4" onclick="selectPack(4)">
+                                <div class="pack-option-header">
+                                    <span class="pack-option-title">4 Pack</span>
+                                    <span class="pack-option-price">₹11,900</span>
+                                </div>
+                                <span class="pack-option-saving">Save ₹2,060</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Free Engraving Box -->
+                    <div class="engraving-box">
+                        <div>
+                            <label class="eyebrow" style="display: block; margin-bottom: 4px;">Free Personal
+                                Engraving</label>
+                            <p class="meta-text">Add your initials, favorite numbers, or an emoji.</p>
+                        </div>
+
+                        <div class="engraving-input-row">
+                            <input type="text" class="engraving-text-input" id="engravingInput" maxlength="4"
+                                placeholder="AIR" value="AIR" oninput="updateEngraving(this.value)">
+                            <div class="emoji-quick-picks">
+                                <button class="emoji-btn" onclick="setEngravingEmoji('🔑')" title="Keys">🔑</button>
+                                <button class="emoji-btn" onclick="setEngravingEmoji('🎒')" title="Backpack">🎒</button>
+                                <button class="emoji-btn" onclick="setEngravingEmoji('🚲')" title="Bicycle">🚲</button>
+                                <button class="emoji-btn" onclick="setEngravingEmoji('🐶')" title="Dog">🐶</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total & Action Area -->
+                    <div class="buy-action-area">
+                        <div class="quantity-row">
+                            <span class="body-text" style="font-weight: 500;">Units</span>
+                            <div class="quantity-stepper">
+                                <button class="stepper-btn" onclick="adjustQuantity(-1)"
+                                    aria-label="Decrease quantity">−</button>
+                                <span class="stepper-value" id="quantityDisplay">1</span>
+                                <button class="stepper-btn" onclick="adjustQuantity(1)"
+                                    aria-label="Increase quantity">+</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="eyebrow" style="display: block;">Total Price (Incl. of all taxes)</span>
+                            <div class="price-total-display" id="totalPriceDisplay">₹3,490</div>
+                        </div>
+
+                        <div class="buy-button-stack">
+                            <button class="btn-primary" style="height: 48px; font-size: 16px;" onclick="addToBag()">
+                                Add to Bag
+                            </button>
+                            <button class="btn-secondary" style="height: 48px; font-size: 16px;"
+                                onclick="addToBag(true)">
+                                Buy Now with Express Checkout
+                            </button>
+                        </div>
+
+                        <div class="delivery-perks">
+                            <div class="perk-line">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13" />
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                                    <circle cx="5.5" cy="18.5" r="2.5" />
+                                    <circle cx="18.5" cy="18.5" r="2.5" />
+                                </svg>
+                                <span>Free delivery available tomorrow.</span>
+                            </div>
+                            <div class="perk-line">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                    <polyline points="9 22 9 12 15 12 15 22" />
+                                </svg>
+                                <span>Free in-store pickup available at Apple BKC & Apple Saket.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification on Add to Bag -->
+    <div class="toast-notification" id="toastNotification">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span id="toastMessage">Added AirTag to your bag.</span>
+    </div>
+
+    <!-- ==========================================================================
+       TECHNICAL SPECIFICATIONS
+       ========================================================================== -->
+    <section class="specs-section" id="specs">
+        <div class="container">
+            <div class="specs-header">
+                <p class="eyebrow">Detailed Specs</p>
+                <h2 class="section-headline">Technical Specifications</h2>
+            </div>
+
+            <div class="specs-table">
+                <div class="specs-row">
+                    <div class="specs-category">Size and Weight</div>
+                    <div class="specs-details">
+                        <ul class="specs-bullet-list">
+                            <li><strong>Diameter:</strong> 31.9 mm (1.26 inches)</li>
+                            <li><strong>Height:</strong> 8.00 mm (0.31 inch)</li>
+                            <li><strong>Weight:</strong> 11 grams (0.39 ounce)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">Splash, Water, and Dust Resistance</div>
+                    <div class="specs-details">
+                        <p>Rated IP67 (maximum depth of 1 metre up to 30 minutes) under IEC standard 60529.</p>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">Connectivity</div>
+                    <div class="specs-details">
+                        <ul class="specs-bullet-list">
+                            <li>Bluetooth 5.0 for proximity finding</li>
+                            <li>Apple-designed U1 chip for Ultra Wideband and Precision Finding</li>
+                            <li>NFC tap for Lost Mode contact information</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">Speaker & Sensor</div>
+                    <div class="specs-details">
+                        <ul class="specs-bullet-list">
+                            <li>Built-in acoustic resonance speaker (85dB SPL)</li>
+                            <li>Precision accelerometer sensor</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">Battery & Power</div>
+                    <div class="specs-details">
+                        <p>User-replaceable CR2032 coin cell battery. Lasts over one year based on everyday typical
+                            usage.</p>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">System Requirements & Compatibility</div>
+                    <div class="specs-details">
+                        <ul class="specs-bullet-list">
+                            <li>Apple ID account</li>
+                            <li>iPhone and iPod touch models with iOS 14.5 or later</li>
+                            <li>iPad models with iPadOS 14.5 or later</li>
+                            <li>Precision Finding compatible with iPhone 11, 12, 13, 14, 15, and 16 series</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="specs-row">
+                    <div class="specs-category">Environmental Requirements</div>
+                    <div class="specs-details">
+                        <p>Operating ambient temperature: −20° to 60° C (−4° to 140° F)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FAQ ACCORDION
+       ========================================================================== -->
+    <section class="faq-section">
+        <div class="container-narrow">
+            <div class="faq-header">
+                <p class="eyebrow">Got Questions?</p>
+                <h2 class="section-headline">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How does AirTag work?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            AirTag sends out a secure Bluetooth signal that can be detected by nearby devices in the
+                            Find My network. These devices send the location of your AirTag to iCloud — then you can go
+                            to the Find My app and see it on a map. The whole process is anonymous and encrypted to
+                            protect your privacy.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How long does the battery last?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            AirTag is engineered to keep going for over a year on a standard CR2032 coin battery that
+                            you can easily replace yourself. Your iPhone lets you know when it’s time to pop in a new
+                            one.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I use AirTag with Android?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            While setting up and tracking an AirTag requires an Apple device with the Find My app, any
+                            NFC-equipped smartphone (including Android devices) can tap a lost AirTag to view the
+                            owner's contact info if Lost Mode is active.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is AirTag waterproof?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            AirTag is splash, water, and dust resistant, tested under controlled laboratory conditions
+                            with a rating of IP67 under IEC standard 60529 (maximum depth of 1 metre up to 30 minutes).
+                            Resistance is not permanent and may decrease as a result of normal wear.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Does AirTag track people or violate privacy?</span>
+                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            AirTag is designed to track items, not people. To discourage unwanted tracking, your iOS or
+                            Android device will automatically notify you if an unknown AirTag is seen traveling with you
+                            over time.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-footnotes">
+                <p>1. Precision Finding is compatible with iPhone 11, iPhone 11 Pro, iPhone 11 Pro Max, iPhone 12,
+                    iPhone 12 mini, iPhone 12 Pro, iPhone 12 Pro Max, iPhone 13, iPhone 13 mini, iPhone 13 Pro, iPhone
+                    13 Pro Max, iPhone 14, iPhone 14 Plus, iPhone 14 Pro, iPhone 14 Pro Max, iPhone 15 series, and
+                    iPhone 16 series.</p>
+                <p>2. Testing conducted by Apple in March 2021 using pre-production AirTag units and software paired
+                    with iPhone 11, iPhone 11 Pro, iPhone 11 Pro Max, iPhone 12 mini, iPhone 12, iPhone 12 Pro, and
+                    iPhone 12 Pro Max units running pre-release software. Battery life based on everyday use of four
+                    play sound events and one Precision Finding event per day.</p>
+                <p>3. AirTag is splash, water, and dust resistant and was tested under controlled laboratory conditions
+                    with a rating of IP67 under IEC standard 60529 (maximum depth of 1 metre up to 30 minutes).</p>
+            </div>
+
+            <div class="footer-links-grid">
+                <div>
+                    <div class="footer-col-title">Shop and Learn</div>
+                    <ul class="footer-col-list">
+                        <li><a href="#buy" class="footer-link">AirTag</a></li>
+                        <li><a href="#buy" class="footer-link">AirTag Accessories</a></li>
+                        <li><a href="#buy" class="footer-link">AirTag Hermès</a></li>
+                        <li><a href="#" class="footer-link">Find My App</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">Account & Orders</div>
+                    <ul class="footer-col-list">
+                        <li><a href="#" class="footer-link">Manage Your Apple ID</a></li>
+                        <li><a href="#" class="footer-link">Apple Store Account</a></li>
+                        <li><a href="#" class="footer-link">Order Status</a></li>
+                        <li><a href="#" class="footer-link">Shopping Help</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">Values & Security</div>
+                    <ul class="footer-col-list">
+                        <li><a href="#" class="footer-link">Privacy Safeguards</a></li>
+                        <li><a href="#" class="footer-link">Anti-Stalking Policy</a></li>
+                        <li><a href="#" class="footer-link">Environment</a></li>
+                        <li><a href="#" class="footer-link">Supply Chain</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">About Apple</div>
+                    <ul class="footer-col-list">
+                        <li><a href="#" class="footer-link">Newsroom</a></li>
+                        <li><a href="#" class="footer-link">Apple Leadership</a></li>
+                        <li><a href="#" class="footer-link">Career Opportunities</a></li>
+                        <li><a href="#" class="footer-link">Ethics & Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-legal-bar">
+                <span>Copyright © 2026 Apple Inc. All rights reserved.</span>
+                <div class="legal-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Use</a>
+                    <a href="#" class="footer-link">Sales Policy</a>
+                    <a href="#" class="footer-link">Legal</a>
+                    <a href="#" class="footer-link">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+    <script>
+        /* --------------------------------------------------------------------------
+           AIRTAG 3D FLIP CONTROLS
+           -------------------------------------------------------------------------- */
+        let isFlipped = false;
+        const heroAirtag = document.getElementById('heroAirtag');
+        const btnViewFront = document.getElementById('btnViewFront');
+        const btnViewBack = document.getElementById('btnViewBack');
+
+        function flipAirtag(toBack) {
+            isFlipped = toBack;
+            if (toBack) {
+                heroAirtag.style.transform = 'rotateY(180deg)';
+                btnViewBack.classList.add('active');
+                btnViewFront.classList.remove('active');
+            } else {
+                heroAirtag.style.transform = 'rotateY(0deg)';
+                btnViewFront.classList.add('active');
+                btnViewBack.classList.remove('active');
+            }
+        }
+
+        // Gentle 3D Tilt on Mousemove for Hero AirTag
+        const heroStage = document.querySelector('.hero-airtag-stage');
+        if (heroStage) {
+            heroStage.addEventListener('mousemove', (e) => {
+                const rect = heroStage.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                const rotateX = (-y / rect.height) * 20;
+                const rotateY = (x / rect.width) * 20 + (isFlipped ? 180 : 0);
+                heroAirtag.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            heroStage.addEventListener('mouseleave', () => {
+                heroAirtag.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+            });
+        }
+
+        /* --------------------------------------------------------------------------
+           INTERACTIVE RADAR & PRECISION FINDING SIMULATION
+           -------------------------------------------------------------------------- */
+        let isSearching = false;
+        const radarBeam = document.getElementById('radarBeam');
+        const radarTarget = document.getElementById('radarTarget');
+        const radarArrowWrapper = document.getElementById('radarArrowWrapper');
+        const radarDistance = document.getElementById('radarDistance');
+        const radarDirectionTag = document.getElementById('radarDirectionTag');
+        const radarStatusText = document.getElementById('radarStatusText');
+        const statusDot = document.getElementById('statusDot');
+        const btnFindNearby = document.getElementById('btnFindNearby');
+        const btnFindText = document.getElementById('btnFindText');
+
+        function triggerFindNearby() {
+            if (isSearching) return;
+            isSearching = true;
+
+            btnFindNearby.disabled = true;
+            btnFindText.textContent = 'Searching for signal...';
+            radarBeam.classList.add('active');
+            statusDot.classList.add('pulsing');
+            statusDot.style.background = '#ffd60a';
+            statusDot.style.boxShadow = '0 0 8px #ffd60a';
+            radarStatusText.textContent = 'Scanning Ultra Wideband Spectrum...';
+
+            radarTarget.style.opacity = '0.2';
+            radarTarget.style.transform = 'scale(0.8)';
+
+            // Simulation Step 1: Acquiring signal
+            setTimeout(() => {
+                radarDistance.textContent = '14 m';
+                radarDirectionTag.textContent = 'Weak signal detected';
+                radarArrowWrapper.style.transform = 'rotate(-45deg)';
+                radarTarget.style.opacity = '0.6';
+            }, 1000);
+
+            // Simulation Step 2: Approaching
+            setTimeout(() => {
+                radarDistance.textContent = '10 m';
+                radarDirectionTag.textContent = 'Ahead to your right';
+                radarArrowWrapper.style.transform = 'rotate(25deg)';
+                radarTarget.style.opacity = '0.85';
+            }, 2000);
+
+            // Simulation Step 3: Locked in close range (Final state)
+            setTimeout(() => {
+                radarBeam.classList.remove('active');
+                radarDistance.textContent = '8 m';
+                radarDirectionTag.textContent = 'AirTag found — 8 meters away';
+                radarArrowWrapper.style.transform = 'rotate(35deg)';
+                radarTarget.style.opacity = '1';
+                radarTarget.style.transform = 'scale(1)';
+
+                statusDot.style.background = 'var(--accent-green)';
+                statusDot.style.boxShadow = '0 0 8px var(--accent-green)';
+                radarStatusText.textContent = 'Signal Locked — Ultra Wideband';
+                btnFindText.textContent = 'Simulate "Find Nearby" again';
+                btnFindNearby.disabled = false;
+                isSearching = false;
+            }, 3200);
+        }
+
+        /* --------------------------------------------------------------------------
+           AUTHENTIC AIRTAG CHIME SYNTHESIZER (WEB AUDIO API)
+           -------------------------------------------------------------------------- */
+        let audioCtx = null;
+        let isPlayingAudio = false;
+        const soundVisualizer = document.getElementById('soundVisualizer');
+        const btnPlaySound = document.getElementById('btnPlaySound');
+
+        function triggerPlaySound() {
+            if (isPlayingAudio) return;
+            isPlayingAudio = true;
+            btnPlaySound.classList.add('playing');
+
+            // Initialize AudioContext on user gesture
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const now = audioCtx.currentTime;
+
+            // Authentic AirTag Two-Tone High Chirp Harmonic Pattern
+            const notes = [
+                { freq: 2093.00, time: 0.00, dur: 0.12 }, // C7
+                { freq: 2637.02, time: 0.14, dur: 0.18 }, // E7
+                { freq: 3135.96, time: 0.38, dur: 0.14 }, // G7
+                { freq: 3520.00, time: 0.54, dur: 0.22 }, // A7
+                { freq: 4186.01, time: 0.82, dur: 0.30 }  // C8
+            ];
+
+            notes.forEach((note) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note.freq, now + note.time);
+
+                gain.gain.setValueAtTime(0.001, now + note.time);
+                gain.gain.exponentialRampToValueAtTime(0.18, now + note.time + 0.03);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + note.time + note.dur);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(now + note.time);
+                osc.stop(now + note.time + note.dur);
+            });
+
+            setTimeout(() => {
+                btnPlaySound.classList.remove('playing');
+                isPlayingAudio = false;
+            }, 1200);
+        }
+
+        /* --------------------------------------------------------------------------
+           CONFIGURATOR & PURCHASE LOGIC
+           -------------------------------------------------------------------------- */
+        let selectedPackSize = 1;
+        let selectedPackPrice = 3490;
+        let orderQuantity = 1;
+        let bagCount = 0;
+
+        const pack1Card = document.getElementById('pack1');
+        const pack4Card = document.getElementById('pack4');
+        const quantityDisplay = document.getElementById('quantityDisplay');
+        const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+        const heroEngravingText = document.getElementById('heroEngravingText');
+        const buyEngravingPreview = document.getElementById('buyEngravingPreview');
+        const engravingInput = document.getElementById('engravingInput');
+        const navBagBadge = document.getElementById('navBagBadge');
+        const toastNotification = document.getElementById('toastNotification');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function selectPack(packSize) {
+            selectedPackSize = packSize;
+            if (packSize === 1) {
+                selectedPackPrice = 3490;
+                pack1Card.classList.add('selected');
+                pack4Card.classList.remove('selected');
+            } else {
+                selectedPackPrice = 11900;
+                pack4Card.classList.add('selected');
+                pack1Card.classList.remove('selected');
+            }
+            updatePrice();
+        }
+
+        function adjustQuantity(delta) {
+            orderQuantity = Math.max(1, Math.min(10, orderQuantity + delta));
+            quantityDisplay.textContent = orderQuantity;
+            updatePrice();
+        }
+
+        function updatePrice() {
+            const total = selectedPackPrice * orderQuantity;
+            totalPriceDisplay.textContent = '₹' + total.toLocaleString('en-IN');
+        }
+
+        function updateEngraving(text) {
+            const cleaned = (text || '').slice(0, 4);
+            heroEngravingText.textContent = cleaned || 'AIR';
+            buyEngravingPreview.textContent = cleaned || 'AIR';
+        }
+
+        function setEngravingEmoji(emoji) {
+            engravingInput.value = emoji;
+            updateEngraving(emoji);
+        }
+
+        let toastTimer = null;
+        function addToBag(isExpress = false) {
+            bagCount += orderQuantity;
+            navBagBadge.textContent = bagCount;
+            navBagBadge.classList.add('show');
+
+            const packLabel = selectedPackSize === 1 ? 'AirTag (1 Pack)' : 'AirTag (4 Pack)';
+            const msg = isExpress
+                ? `Proceeding to checkout for ${orderQuantity} × ${packLabel}!`
+                : `Added ${orderQuantity} × ${packLabel} to your Bag.`;
+
+            toastMessage.textContent = msg;
+            toastNotification.classList.add('active');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toastNotification.classList.remove('active');
+            }, 3500);
+        }
+
+        /* --------------------------------------------------------------------------
+           FAQ ACCORDION
+           -------------------------------------------------------------------------- */
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            const isOpen = item.classList.contains('open');
+
+            document.querySelectorAll('.faq-item').forEach((otherItem) => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('open');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                }
+            });
+
+            if (isOpen) {
+                item.classList.remove('open');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           MOBILE NAVIGATION DRAWER
+           -------------------------------------------------------------------------- */
+        const navToggle = document.getElementById('navToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+
+        navToggle.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.mobile-menu-link').forEach((link) => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
