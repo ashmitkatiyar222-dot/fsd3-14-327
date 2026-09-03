@@ -7,10 +7,44 @@ npm node package manager
 //status codes
 
 200 ok
-404 not found
-500 internal server error
+201 created
+202 accepted
+204 no content
+400 bad request
 401 un authorized
 403 forbidden
+404 not found
+500 internal server error
+503 service unavailable
+
+
+## server can send data to 
+html content
+html files
+json data
+plain text
+css 
+jss file
+
+## server can set header to send data
+res.writeHeader()
+res.setHeader()
+
+## server can set status code 
+res.statusCode()
+res.writeHead()
+
+## request methods
+
+get
+post
+put/patch
+delete
+
+## routes
+
+
+
 <<<<<<< HEAD
 
 
