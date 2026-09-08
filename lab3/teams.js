@@ -22,7 +22,7 @@ let teams = [{
 
 let nextId = 3;
 
-const getAllTeam = () => teams
+export const getAllTeam = () => teams
 
 export const getTeamById = (id) => teams.find((team) => team.id === id)
 
