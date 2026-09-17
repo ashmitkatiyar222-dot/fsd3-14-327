@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js",
-    "dev": "nodemon app.js"
+    "test": "node prg1.js",
+    "dev": "nodemon prg1.js"
   },
   "keywords": [],
   "author": "",

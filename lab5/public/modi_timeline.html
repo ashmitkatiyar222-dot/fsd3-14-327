@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Lifelong Timeline | Shri Narendra Modi 76th Birthday</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --saffron: #FF7722;
+      --saffron-bright: #FF9933;
+      --saffron-glow: rgba(255, 119, 34, 0.4);
+      --saffron-soft: rgba(255, 119, 34, 0.12);
+      --white: #FFFFFF;
+      --gold: #F59E0B;
+      --gold-light: #FDE68A;
+      --gold-glow: rgba(245, 158, 11, 0.45);
+      --green-emerald: #10B981;
+      --chakra-blue: #06038D;
+      
+      --bg-dark: #07090E;
+      --bg-surface: #0E131F;
+      --bg-card: rgba(18, 24, 38, 0.8);
+      --bg-card-hover: rgba(26, 35, 54, 0.95);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(255, 153, 51, 0.35);
+      --border-gold: rgba(245, 158, 11, 0.35);
+
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --text-dim: #6B7280;
+
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.6;
+      background: radial-gradient(circle at 50% 0%, #171c2b 0%, #080a10 50%, #030407 100%);
+      color: var(--text-main);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Motion Background */
+    .ambient-aurora {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.6; overflow: hidden;
+    }
+    .aurora-blob {
+      position: absolute; border-radius: 50%; filter: blur(120px);
+      animation: floatAurora 20s infinite alternate ease-in-out;
+    }
+    .aurora-1 {
+      top: -10%; left: 15%; width: 55vw; height: 45vh;
+      background: radial-gradient(circle, rgba(255, 119, 34, 0.25) 0%, transparent 70%);
+    }
+    .aurora-2 {
+      bottom: -10%; right: 10%; width: 50vw; height: 50vh;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+      animation-delay: -5s;
+    }
+    @keyframes floatAurora {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.05); }
+      100% { transform: translate(-20px, 30px) scale(0.95); }
+    }
+
+    .container {
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 3rem); max-width: 1200px; z-index: 100;
+      background: rgba(14, 19, 31, 0.85); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle); border-radius: 9999px;
+      padding: 0.7rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: var(--transition-smooth);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #FFF;
+    }
+    .nav-chakra-icon { width: 32px; height: 32px; animation: spinChakra 28s linear infinite; }
+    @keyframes spinChakra { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .nav-brand-title {
+      font-family: 'Cinzel', serif; font-weight: 800; font-size: 1.15rem;
+      background: linear-gradient(135deg, #FFF 30%, #FF9933 100%);
+      /* -webkit-background-clip: text; -webkit-text-fill-color: transparent; */
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--saffron-bright); }
+
+    .btn-nav-wish {
+      background: linear-gradient(135deg, var(--saffron), #FF5500); color: #FFF; text-decoration: none;
+      padding: 0.55rem 1.25rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700;
+      box-shadow: 0 4px 20px var(--saffron-glow); transition: var(--transition-smooth);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding-top: 9rem; padding-bottom: 3.5rem; text-align: center;
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 700;
+      color: var(--saffron-bright); background: var(--saffron-soft); border: 1px solid rgba(255, 119, 34, 0.3);
+      padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.2rem;
+    }
+    .page-title {
+      font-family: 'Cinzel', serif; font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 900; color: #FFF;
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+    .page-subtitle {
+      font-size: 1.1rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2.5rem auto; line-height: 1.6;
+    }
+
+    /* Era Navigation & Search Controls */
+    .timeline-controls {
+      background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 24px;
+      padding: 1.5rem; backdrop-filter: blur(16px); margin-bottom: 4rem;
+    }
+    .search-bar-row {
+      margin-bottom: 1.2rem; position: relative;
+    }
+    .timeline-search-input {
+      width: 100%; background: rgba(8, 11, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px; padding: 0.85rem 1.2rem 0.85rem 2.8rem; color: #FFF; font-size: 0.95rem;
+      outline: none; transition: border-color 0.3s ease;
+    }
+    .timeline-search-input:focus { border-color: var(--saffron); }
+    .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+
+    .era-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+    }
+    .era-tab {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 600; padding: 0.5rem 1.1rem;
+      border-radius: 999px; cursor: pointer; transition: var(--transition-smooth);
+    }
+    .era-tab.active, .era-tab:hover {
+      background: var(--saffron-soft); border-color: var(--saffron); color: var(--saffron-bright);
+    }
+
+    /* Detailed Vertical Timeline Spine */
+    .timeline-vertical {
+      position: relative; padding: 2rem 0;
+    }
+    .timeline-vertical::before {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 3px; background: linear-gradient(180deg, var(--saffron) 0%, var(--gold) 50%, var(--green-emerald) 100%);
+      border-radius: 3px; box-shadow: 0 0 15px rgba(255, 153, 51, 0.4);
+    }
+
+    .timeline-block {
+      position: relative; margin-bottom: 4rem; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3.5rem; align-items: center;
+    }
+    .timeline-block:nth-child(even) .timeline-content-box { grid-column: 2; text-align: left; }
+    .timeline-block:nth-child(odd) .timeline-content-box { grid-column: 1; text-align: right; }
+
+    .timeline-node {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 24px; height: 24px; border-radius: 50%; background: #07090E;
+      border: 4px solid var(--saffron); box-shadow: 0 0 20px var(--saffron-glow);
+      z-index: 10; transition: var(--transition-smooth);
+    }
+    .timeline-block:hover .timeline-node {
+      background: #FFF; border-color: var(--gold); transform: translate(-50%, -50%) scale(1.4);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+
+    .timeline-content-box {
+      background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 24px;
+      padding: 2.2rem; backdrop-filter: blur(16px); transition: var(--transition-smooth);
+      position: relative; overflow: hidden;
+    }
+    .timeline-block:hover .timeline-content-box {
+      transform: translateY(-6px); border-color: var(--border-accent); background: var(--bg-card-hover);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 119, 34, 0.15);
+    }
+
+    .event-era-pill {
+      display: inline-block; font-size: 0.78rem; font-weight: 800; color: var(--saffron-bright);
+      background: rgba(255, 119, 34, 0.15); border: 1px solid rgba(255, 119, 34, 0.3);
+      padding: 0.25rem 0.8rem; border-radius: 999px; margin-bottom: 0.8rem;
+    }
+    .event-year {
+      font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900; color: var(--gold-light);
+      margin-bottom: 0.4rem;
+    }
+    .event-title {
+      font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 800; color: #FFF; margin-bottom: 0.8rem;
+    }
+    .event-description {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.2rem;
+    }
+    .event-stat-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 700;
+      color: var(--green-emerald); background: rgba(16, 185, 129, 0.12); padding: 0.35rem 0.8rem;
+      border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    /* Footer */
+    .footer {
+      background: #05070B; border-top: 1px solid var(--border-subtle); padding: 3.5rem 0 2rem 0; text-align: center;
+    }
+    .footer-title { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 800; color: #FFF; margin-bottom: 0.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; }
+    .footer-links a { color: var(--saffron-bright); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .timeline-vertical::before { left: 20px; }
+      .timeline-block { grid-template-columns: 1fr; padding-left: 50px; }
+      .timeline-block:nth-child(even) .timeline-content-box,
+      .timeline-block:nth-child(odd) .timeline-content-box { grid-column: 1; text-align: left; }
+      .timeline-node { left: 20px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient-aurora">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="modi_birthday_wish.html" class="nav-brand">
+      <svg class="nav-chakra-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#FF9933" stroke-width="3"/>
+        <circle cx="50" cy="50" r="12" fill="none" stroke="#FF9933" stroke-width="3"/>
+        <g stroke="#FF9933" stroke-width="1.8">
+          <line x1="50" y1="50" x2="50" y2="5" />
+          <line x1="50" y1="50" x2="95" y2="50" />
+          <line x1="50" y1="50" x2="50" y2="95" />
+          <line x1="50" y1="50" x2="5" y2="50" />
+        </g>
+      </svg>
+      <span class="nav-brand-title">MODI @ 76</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="modi_birthday_wish.html">Homepage</a></li>
+      <li><a href="modi_timeline.html" class="active">Timeline</a></li>
+      <li><a href="modi_mentions.html">Global Mentions</a></li>
+      <li><a href="modi_birthday_wish.html#wishes">Wishes Wall</a></li>
+    </ul>
+
+    <a href="modi_birthday_wish.html#wishes" class="btn-nav-wish">✍️ Wish Modi Ji</a>
+  </nav>
+
+  <div class="container">
+    <header class="page-header">
+      <div class="page-badge">📜 HISTORIC MILESTONES & REFORMS</div>
+      <h1 class="page-title">Lifelong Chronology of Service</h1>
+      <p class="page-subtitle">
+        An interactive journey through 76 years of unwavering devotion, grassroots organization,
+        state governance in Gujarat, and leadership of Bharat into the 21st century.
+      </p>
+    </header>
+
+    <!-- Controls -->
+    <div class="timeline-controls">
+      <div class="search-bar-row">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="timelineSearch" class="timeline-search-input" placeholder="Search events (e.g. Vadnagar, Gujarat, UPI, Chandrayaan, G20, Swachh Bharat)...">
+      </div>
+
+      <div class="era-tabs">
+        <button class="era-tab active" data-era="all">All Eras (1950 - 2047)</button>
+        <button class="era-tab" data-era="grassroots">1950-1987: Grassroots & Youth</button>
+        <button class="era-tab" data-era="gujarat">2001-2014: Chief Minister Era</button>
+        <button class="era-tab" data-era="term1">2014-2019: First PM Mandate</button>
+        <button class="era-tab" data-era="term2">2019-2024: Global Stature</button>
+        <button class="era-tab" data-era="viksit">2024-2047: Viksit Bharat Vision</button>
+      </div>
+    </div>
+
+    <!-- Vertical Timeline -->
+    <div class="timeline-vertical" id="timelineStream">
+
+      <!-- Event 1 -->
+      <div class="timeline-block" data-era="grassroots" data-keywords="Vadnagar 1950 birth tea stall school discipline service">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Roots of Humility</span>
+          <div class="event-year">17 September 1950</div>
+          <h3 class="event-title">Birth in Vadnagar, Mehsana</h3>
+          <p class="event-description">
+            Born to Damodardas Modi and Hiraba Modi in Vadnagar, Gujarat. Learned perseverance, discipline, and empathy for common citizens while helping at his father's tea stall near Vadnagar railway station.
+          </p>
+          <div class="event-stat-badge">🌱 Foundation of Service & Austerity</div>
+        </div>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="timeline-block" data-era="grassroots" data-keywords="1987 BJP Gujarat General Secretary Ekta Yatra Murli Manohar Joshi">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Organizational Strategy</span>
+          <div class="event-year">1987 — 1991</div>
+          <h3 class="event-title">Organizing Grassroots & Ekta Yatra</h3>
+          <p class="event-description">
+            Appointed General Secretary of BJP Gujarat. Strategized key socio-cultural initiatives including the historic Ekta Yatra from Kanyakumari to Srinagar to unfurl the national flag at Lal Chowk.
+          </p>
+          <div class="event-stat-badge">🚩 Grassroots Mobilization</div>
+        </div>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="timeline-block" data-era="gujarat" data-keywords="2001 Gujarat Chief Minister CM Bhuj Earthquake Vibrant Gujarat Jyotigram">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Governance Renaissance</span>
+          <div class="event-year">7 October 2001</div>
+          <h3 class="event-title">Sworn in as Chief Minister of Gujarat</h3>
+          <p class="event-description">
+            Assumed charge following the catastrophic Bhuj earthquake. Orchestrated rapid post-disaster reconstruction, initiated 24x7 rural electrification (Jyotigram Yojana), and launched Vibrant Gujarat Global Summit.
+          </p>
+          <div class="event-stat-badge">⚡ 24x7 Power & Infrastructure Growth</div>
+        </div>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="timeline-block" data-era="term1" data-keywords="2014 PM Election Mandate Jan Dhan Swachh Bharat Make in India">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">National Transformation</span>
+          <div class="event-year">May 2014</div>
+          <h3 class="event-title">Historic Lok Sabha Mandate & Pradhan Sevak</h3>
+          <p class="event-description">
+            Led BJP to an absolute majority. Sworn in as 14th Prime Minister. Launched PM Jan Dhan Yojana (over 50 Cr bank accounts opened), Swachh Bharat Abhiyan, and Make in India.
+          </p>
+          <div class="event-stat-badge">🏦 500 Million+ Bank Accounts Opened</div>
+        </div>
+      </div>
+
+      <!-- Event 5 -->
+      <div class="timeline-block" data-era="term1" data-keywords="2016 UPI Digital India GST Ayushman Bharat Healthcare">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Digital & Health Revolution</span>
+          <div class="event-year">2016 — 2018</div>
+          <h3 class="event-title">UPI Launch & Ayushman Bharat</h3>
+          <p class="event-description">
+            Pioneered the Unified Payments Interface (UPI) creating the world's most advanced digital payment infrastructure. Rolled out Ayushman Bharat offering ₹5 Lakh free health cover per family to 55 Crore citizens.
+          </p>
+          <div class="event-stat-badge">🏥 550 Million Healthcare Beneficiaries</div>
+        </div>
+      </div>
+
+      <!-- Event 6 -->
+      <div class="timeline-block" data-era="term2" data-keywords="2019 2023 G20 Delhi Summit Chandrayaan 3 Moon Landing COVID Vaccination">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Global Leadership & Science</span>
+          <div class="event-year">2019 — 2023</div>
+          <h3 class="event-title">Chandrayaan-3 & Historic G20 Presidency</h3>
+          <p class="event-description">
+            Administered over 220 Crore indigenous COVID-19 vaccine doses. Spearheaded Chandrayaan-3's historic lunar south pole landing (Shiv Shakti Point) and hosted the consensus-building G20 Summit in New Delhi.
+          </p>
+          <div class="event-stat-badge">🌕 First Nation at Moon's South Pole</div>
+        </div>
+      </div>
+
+      <!-- Event 7 -->
+      <div class="timeline-block" data-era="viksit" data-keywords="2024 2026 2047 Viksit Bharat Semiconductor 3rd Largest Economy">
+        <div class="timeline-node"></div>
+        <div class="timeline-content-box">
+          <span class="event-era-pill">Vision 2047</span>
+          <div class="event-year">2024 — 2047</div>
+          <h3 class="event-title">Architecting Viksit Bharat (Developed India)</h3>
+          <p class="event-description">
+            Steering Bharat to become the world’s 3rd largest economy, a global semiconductor hub, bullet train operator, and a fully developed self-reliant nation by the centenary of independence in 2047.
+          </p>
+          <div class="event-stat-badge">🚀 Target 3rd Largest Global Economy</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <h3 class="footer-title">National Birthday Tribute to PM Narendra Modi</h3>
+      <div class="footer-links">
+        <a href="modi_birthday_wish.html">Homepage</a>
+        <a href="modi_mentions.html">Global Mentions & Honors</a>
+        <a href="modi_birthday_wish.html#wishes">Citizen Wishes Board</a>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-dim);">Celebrating 76 Glorious Years • 17 September 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('timelineSearch');
+    const eraTabs = document.querySelectorAll('.era-tab');
+    const blocks = document.querySelectorAll('.timeline-block');
+
+    let currentEra = 'all';
+
+    eraTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        eraTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentEra = tab.getAttribute('data-era');
+        filterTimeline();
+      });
+    });
+
+    searchInput.addEventListener('input', filterTimeline);
+
+    function filterTimeline() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      blocks.forEach(block => {
+        const blockEra = block.getAttribute('data-era');
+        const keywords = (block.getAttribute('data-keywords') || '') + ' ' + block.innerText;
+
+        const matchesEra = (currentEra === 'all') || (blockEra === currentEra);
+        const matchesQuery = !query || keywords.toLowerCase().includes(query);
+
+        if (matchesEra && matchesQuery) {
+          block.style.display = 'grid';
+        } else {
+          block.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

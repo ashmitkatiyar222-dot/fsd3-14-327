@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Mentions & Tributes | Shri Narendra Modi 76th Birthday</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --saffron: #FF7722;
+      --saffron-bright: #FF9933;
+      --saffron-glow: rgba(255, 119, 34, 0.4);
+      --saffron-soft: rgba(255, 119, 34, 0.12);
+      --white: #FFFFFF;
+      --gold: #F59E0B;
+      --gold-light: #FDE68A;
+      --gold-glow: rgba(245, 158, 11, 0.45);
+      --green-emerald: #10B981;
+      --chakra-blue: #06038D;
+      
+      --bg-dark: #07090E;
+      --bg-surface: #0E131F;
+      --bg-card: rgba(18, 24, 38, 0.75);
+      --bg-card-hover: rgba(26, 35, 54, 0.9);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(255, 153, 51, 0.3);
+      --border-gold: rgba(245, 158, 11, 0.3);
+
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --text-dim: #6B7280;
+
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      line-height: 1.6;
+      background: radial-gradient(circle at 50% 0%, #171c2b 0%, #080a10 50%, #030407 100%);
+      color: var(--text-main);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Mesh */
+    .ambient-aurora {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+      overflow: hidden;
+    }
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: floatAurora 20s infinite alternate ease-in-out;
+    }
+    .aurora-1 {
+      top: -10%; left: 15%; width: 55vw; height: 45vh;
+      background: radial-gradient(circle, rgba(255, 119, 34, 0.25) 0%, transparent 70%);
+    }
+    .aurora-2 {
+      top: 40%; right: -10%; width: 50vw; height: 50vh;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+      animation-delay: -5s;
+    }
+
+    @keyframes floatAurora {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -20px) scale(1.05); }
+      100% { transform: translate(-20px, 30px) scale(0.95); }
+    }
+
+    #celebrationCanvas {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    }
+
+    .container {
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      position: fixed; top: 1.25rem; left: 50%; transform: translateX(-50%);
+      width: calc(100% - 3rem); max-width: 1200px; z-index: 100;
+      background: rgba(14, 19, 31, 0.85); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle); border-radius: 9999px;
+      padding: 0.7rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); transition: var(--transition-smooth);
+    }
+    .navbar.scrolled {
+      top: 0.75rem; background: rgba(11, 15, 25, 0.95); border-color: rgba(255, 153, 51, 0.25);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #FFF;
+    }
+    .nav-chakra-icon { width: 32px; height: 32px; animation: spinChakra 28s linear infinite; }
+    @keyframes spinChakra { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .nav-brand-title {
+      font-family: 'Cinzel', serif; font-weight: 800; font-size: 1.15rem;
+      background: linear-gradient(135deg, #FFF 30%, #FF9933 100%);
+      /* -webkit-background-clip: text; -webkit-text-fill-color: transparent; */
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--saffron-bright); }
+
+    .btn-nav-wish {
+      background: linear-gradient(135deg, var(--saffron), #FF5500); color: #FFF; text-decoration: none;
+      padding: 0.55rem 1.25rem; border-radius: 999px; font-size: 0.85rem; font-weight: 700;
+      box-shadow: 0 4px 20px var(--saffron-glow); transition: var(--transition-smooth);
+    }
+
+    /* Page Header */
+    .page-header {
+      padding-top: 9rem; padding-bottom: 3.5rem; text-align: center;
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; font-weight: 700;
+      color: var(--saffron-bright); background: var(--saffron-soft); border: 1px solid rgba(255, 119, 34, 0.3);
+      padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1.2rem;
+    }
+    .page-title {
+      font-family: 'Cinzel', serif; font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 900; color: #FFF;
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+    .page-subtitle {
+      font-size: 1.1rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2.5rem auto; line-height: 1.6;
+    }
+
+    /* Controls Bar: Search & Category Filters */
+    .controls-bar {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 1.2rem; background: var(--bg-card); border: 1px solid var(--border-subtle);
+      border-radius: 20px; padding: 1.2rem 1.6rem; backdrop-filter: blur(16px); margin-bottom: 3.5rem;
+    }
+    .search-input-wrapper {
+      position: relative; flex: 1; min-width: 260px;
+    }
+    .search-input {
+      width: 100%; background: rgba(8, 11, 18, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px; padding: 0.75rem 1.2rem 0.75rem 2.8rem; color: #FFF; font-size: 0.92rem;
+      outline: none; transition: border-color 0.3s ease;
+    }
+    .search-input:focus { border-color: var(--saffron); }
+    .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+
+    .filter-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .filter-chip {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 600; padding: 0.45rem 1rem;
+      border-radius: 999px; cursor: pointer; transition: var(--transition-smooth);
+    }
+    .filter-chip.active, .filter-chip:hover {
+      background: var(--saffron-soft); border-color: var(--saffron); color: var(--saffron-bright);
+    }
+
+    /* Section Grid: Global Honors */
+    .section-title {
+      font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: #FFF; margin-bottom: 1.8rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .honors-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.8rem; margin-bottom: 4.5rem;
+    }
+    .honor-card {
+      background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 24px;
+      padding: 2rem; backdrop-filter: blur(16px); transition: var(--transition-smooth);
+      position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .honor-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--saffron)); opacity: 0; transition: opacity 0.3s ease;
+    }
+    .honor-card:hover {
+      transform: translateY(-6px); border-color: var(--border-gold); background: var(--bg-card-hover);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.15);
+    }
+    .honor-card:hover::after { opacity: 1; }
+
+    .honor-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; }
+    .honor-flag { font-size: 2.2rem; }
+    .honor-year {
+      font-size: 0.78rem; font-weight: 800; color: var(--gold-light); background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.25rem 0.75rem; border-radius: 999px;
+    }
+    .honor-name {
+      font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #FFF; margin-bottom: 0.4rem; line-height: 1.3;
+    }
+    .honor-country { font-size: 0.88rem; color: var(--saffron-bright); font-weight: 700; margin-bottom: 0.8rem; }
+    .honor-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Quotes & Statements Grid */
+    .quotes-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.8rem; margin-bottom: 4.5rem;
+    }
+    .quote-mention-card {
+      background: linear-gradient(150deg, rgba(20, 26, 40, 0.85), rgba(12, 16, 26, 0.95));
+      border: 1px solid var(--border-subtle); border-radius: 24px; padding: 2.2rem;
+      transition: var(--transition-smooth); position: relative;
+    }
+    .quote-mention-card:hover {
+      transform: translateY(-6px); border-color: rgba(255, 153, 51, 0.35);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    }
+    .leader-avatar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+    .leader-avatar {
+      width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--saffron), #E11D48);
+      display: flex; align-items: center; justify-content: center; font-weight: 800; color: #FFF; font-size: 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    .leader-name { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 700; color: #FFF; }
+    .leader-title { font-size: 0.8rem; color: var(--text-muted); }
+    .statement-body {
+      font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #E5E7EB; line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: #05070B; border-top: 1px solid var(--border-subtle); padding: 3.5rem 0 2rem 0; text-align: center;
+    }
+    .footer-title { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 800; color: #FFF; margin-bottom: 0.5rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; }
+    .footer-links a { color: var(--saffron-bright); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+    .footer-links a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .honors-grid, .quotes-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ambient-aurora">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+  </div>
+  <canvas id="celebrationCanvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <a href="modi_birthday_wish.html" class="nav-brand">
+      <svg class="nav-chakra-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#FF9933" stroke-width="3"/>
+        <circle cx="50" cy="50" r="12" fill="none" stroke="#FF9933" stroke-width="3"/>
+        <g stroke="#FF9933" stroke-width="1.8">
+          <line x1="50" y1="50" x2="50" y2="5" />
+          <line x1="50" y1="50" x2="95" y2="50" />
+          <line x1="50" y1="50" x2="50" y2="95" />
+          <line x1="50" y1="50" x2="5" y2="50" />
+        </g>
+      </svg>
+      <span class="nav-brand-title">MODI @ 76</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="modi_birthday_wish.html">Homepage</a></li>
+      <li><a href="modi_timeline.html">Timeline</a></li>
+      <li><a href="modi_mentions.html" class="active">Global Mentions</a></li>
+      <li><a href="modi_birthday_wish.html#wishes">Wishes Wall</a></li>
+    </ul>
+
+    <a href="modi_birthday_wish.html#wishes" class="btn-nav-wish">✍️ Wish Modi Ji</a>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <header class="page-header">
+      <div class="page-badge">🌍 GLOBAL RECOGNITION & INTERNATIONAL TRIBUTES</div>
+      <h1 class="page-title">Global Mentions & Highest Civilian Honors</h1>
+      <p class="page-subtitle">
+        Exploring 25+ highest national civilian honors conferred upon Prime Minister Narendra Modi,
+        alongside remarks from world leaders, global tech icons, and international institutions.
+      </p>
+    </header>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="search-input-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by country, leader, or award (e.g. France, Elon Musk, Russia)...">
+      </div>
+
+      <div class="filter-pills">
+        <button class="filter-chip active" data-filter="all">All Mentions</button>
+        <button class="filter-chip" data-filter="awards">Civilian Honors</button>
+        <button class="filter-chip" data-filter="leaders">World Leaders</button>
+        <button class="filter-chip" data-filter="tech">Tech & Business</button>
+      </div>
+    </div>
+
+    <!-- Section 1: Highest Civilian Honors -->
+    <h2 class="section-title">🏆 Highest Civilian Honors Conferred</h2>
+    <div class="honors-grid" id="honorsGrid">
+      <!-- Honor 1 -->
+      <div class="honor-card" data-category="awards" data-keywords="Russia Order of St. Andrew 2019">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇷🇺</span>
+            <span class="honor-year">2019</span>
+          </div>
+          <h3 class="honor-name">Order of St. Andrew the Apostle</h3>
+          <div class="honor-country">Russia • Highest Civilian Award</div>
+          <p class="honor-desc">
+            Conferred for exceptional services in promoting a special and privileged strategic partnership between Russia and India.
+          </p>
+        </div>
+      </div>
+
+      <!-- Honor 2 -->
+      <div class="honor-card" data-category="awards" data-keywords="France Grand Cross Legion of Honour 2023">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇫🇷</span>
+            <span class="honor-year">2023</span>
+          </div>
+          <h3 class="honor-name">Grand Cross of the Legion of Honour</h3>
+          <div class="honor-country">France • Highest French Distinction</div>
+          <p class="honor-desc">
+            Presented by President Emmanuel Macron during PM Modi's historic Bastille Day visit in Paris.
+          </p>
+        </div>
+      </div>
+
+      <!-- Honor 3 -->
+      <div class="honor-card" data-category="awards" data-keywords="Bhutan Order of Druk Gyalpo 2021 2024">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇧🇹</span>
+            <span class="honor-year">2024</span>
+          </div>
+          <h3 class="honor-name">Order of the Druk Gyalpo (Ngadag Pel gi Khorlo)</h3>
+          <div class="honor-country">Bhutan • Highest Civilian Honor</div>
+          <p class="honor-desc">
+            First foreign head of government to receive Bhutan's highest honor for outstanding contribution to bilateral ties and regional growth.
+          </p>
+        </div>
+      </div>
+
+      <!-- Honor 4 -->
+      <div class="honor-card" data-category="awards" data-keywords="UAE Order of Zayed 2019">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇦🇪</span>
+            <span class="honor-year">2019</span>
+          </div>
+          <h3 class="honor-name">Order of Zayed</h3>
+          <div class="honor-country">United Arab Emirates • Highest Civil Decoration</div>
+          <p class="honor-desc">
+            Conferred for giving a momentous boost to strategic, economic, and cultural relations between the UAE and India.
+          </p>
+        </div>
+      </div>
+
+      <!-- Honor 5 -->
+      <div class="honor-card" data-category="awards" data-keywords="Egypt Order of the Nile 2023">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇪🇬</span>
+            <span class="honor-year">2023</span>
+          </div>
+          <h3 class="honor-name">Order of the Nile</h3>
+          <div class="honor-country">Egypt • Highest State Honor</div>
+          <p class="honor-desc">
+            Bestowed by President Abdel Fattah el-Sisi in Cairo, recognizing PM Modi's contributions to global partnership and diplomacy.
+          </p>
+        </div>
+      </div>
+
+      <!-- Honor 6 -->
+      <div class="honor-card" data-category="awards" data-keywords="USA Legion of Merit 2020">
+        <div>
+          <div class="honor-header">
+            <span class="honor-flag">🇺🇸</span>
+            <span class="honor-year">2020</span>
+          </div>
+          <h3 class="honor-name">Legion of Merit (Chief Commander)</h3>
+          <div class="honor-country">United States • US Armed Forces Award</div>
+          <p class="honor-desc">
+            Awarded for exceptionally meritorious service and leadership in elevating the US-India strategic partnership and QUAD framework.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Statements from World Leaders & Tech Icons -->
+    <h2 class="section-title">🌐 Tributes & Quotes from Global Leaders</h2>
+    <div class="quotes-grid" id="quotesGrid">
+      
+      <div class="quote-mention-card" data-category="leaders" data-keywords="Emmanuel Macron France Bastille Day">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">EM</div>
+          <div>
+            <div class="leader-name">Emmanuel Macron</div>
+            <div class="leader-title">President of France</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "India is a giant in world history, with a decisive role on our planet's future. Narendra Modi's vision has transformed India's global stature into a force for peace and stability."
+        </p>
+      </div>
+
+      <div class="quote-mention-card" data-category="tech" data-keywords="Elon Musk Tesla SpaceX X Starlink">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">EM</div>
+          <div>
+            <div class="leader-name">Elon Musk</div>
+            <div class="leader-title">CEO, Tesla & SpaceX</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "I am a fan of Modi. He really wants to do the right thing for India. He wants to be open, supportive of new companies, and ensure that India is at the forefront of global tech."
+        </p>
+      </div>
+
+      <div class="quote-mention-card" data-category="tech" data-keywords="Sundar Pichai Google Alphabet AI Digital India">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">SP</div>
+          <div>
+            <div class="leader-name">Sundar Pichai</div>
+            <div class="leader-title">CEO, Alphabet & Google</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "PM Modi's vision for Digital India was ahead of its time. The scale at which technology, UPI, and AI infrastructure are being adopted in India is a template for the entire world."
+        </p>
+      </div>
+
+      <div class="quote-mention-card" data-category="leaders" data-keywords="Giorgia Meloni Italy G7 G20">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">GM</div>
+          <div>
+            <div class="leader-name">Giorgia Meloni</div>
+            <div class="leader-title">Prime Minister of Italy</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "PM Modi is the most loved of all global leaders. His leadership during the G20 demonstrated how Bharat brings together the Global North and Global South seamlessly."
+        </p>
+      </div>
+
+      <div class="quote-mention-card" data-category="tech" data-keywords="Satya Nadella Microsoft Cloud AI India">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">SN</div>
+          <div>
+            <div class="leader-name">Satya Nadella</div>
+            <div class="leader-title">CEO, Microsoft</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "It's inspiring to see the Prime Minister's focus on sustainable, inclusive growth driven by digital public infrastructure. India’s AI transformation under his leadership is remarkable."
+        </p>
+      </div>
+
+      <div class="quote-mention-card" data-category="leaders" data-keywords="Ajay Banga World Bank CEO President">
+        <div class="leader-avatar-row">
+          <div class="leader-avatar">AB</div>
+          <div>
+            <div class="leader-name">Ajay Banga</div>
+            <div class="leader-title">President, World Bank</div>
+          </div>
+        </div>
+        <p class="statement-body">
+          "What India accomplished in digital financial inclusion in 7 years under PM Modi would have taken 47 years for any other country. It is a benchmark for developed nations."
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <h3 class="footer-title">National Birthday Tribute to PM Narendra Modi</h3>
+      <div class="footer-links">
+        <a href="modi_birthday_wish.html">Homepage</a>
+        <a href="modi_timeline.html">Interactive Timeline</a>
+        <a href="modi_birthday_wish.html#wishes">Citizen Wishes Board</a>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-dim);">Celebrating 76 Glorious Years • 17 September 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    // Search and Filter Logic
+    const searchInput = document.getElementById('searchInput');
+    const filterChips = document.querySelectorAll('.filter-chip');
+    const honorCards = document.querySelectorAll('.honor-card');
+    const quoteCards = document.querySelectorAll('.quote-mention-card');
+
+    let currentFilter = 'all';
+
+    filterChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        filterChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('selected', 'active');
+        currentFilter = chip.getAttribute('data-filter');
+        applySearchAndFilter();
+      });
+    });
+
+    searchInput.addEventListener('input', applySearchAndFilter);
+
+    function applySearchAndFilter() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      const allItems = [...honorCards, ...quoteCards];
+
+      allItems.forEach(card => {
+        const category = card.getAttribute('data-category');
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText;
+        const matchesCategory = (currentFilter === 'all') || (category === currentFilter);
+        const matchesSearch = !query || keywords.toLowerCase().includes(query);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'flex';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
