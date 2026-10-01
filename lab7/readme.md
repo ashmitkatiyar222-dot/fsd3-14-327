@@ -27,5 +27,9 @@ in backend
  it should be treated as html tag
 
 
-object destructure(const {bname, price, quantity, rating} = props.book;)
-does not depends on order,if property is not available then it is initialized with null 
+object destructure(const ```{bname, price, quantity, rating}``` = props.book;)
+does not depends on order,if property is not available then it is initialized with null \
+any components include style
+1. externalC CSS (create class in index.css and used in component)
+2. Internal CSS(create property as a object like ```<button className="lal_button" style={{color:'red', margin:'15px'}}>Buy Now</button> ```then apply with style attribute and pass the object )
+3. Inline CSS (in this method we use two curly bracket with style attribut all the CSS property must be single word for example ```text-align``` become textAlign)
