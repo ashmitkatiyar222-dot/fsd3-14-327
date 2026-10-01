@@ -16,7 +16,9 @@ const b2 = {
   rating: 5.0
 };
 
+
 function Book(props) {
+  const {bname, price, quantity, rating} = props.book;
   return (
     <div>
       <img src={props.book.picUrl} alt={props.book.bname} />
@@ -26,19 +28,23 @@ function Book(props) {
       <h2>Price: ${props.book.price}</h2>
       <h2>Rating: {props.book.rating}</h2>
       <h3>Quantity: {props.book.quantity}</h3>
+      <button className="lal_button" style={{color:'red', margin:'15px'}}>Buy Now</button>
     </div>
   );
 }
 
+
+
 export default function App() {
   return (
     <>
-      <h1>Hello React</h1>
-
+      <h1>Book Store</h1>
+       <div className="container">
       <Book book={b1} />
       <Book book={b2} />
       <Book book={b1} />
       <Book book={b2} />
+      </div>
     </>
   );
 }

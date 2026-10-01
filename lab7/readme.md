@@ -25,3 +25,7 @@ in backend
  simple js function return html directory
  it must  starts with capital letter
  it should be treated as html tag
+
+
+object destructure(const {bname, price, quantity, rating} = props.book;)
+does not depends on order,if property is not available then it is initialized with null 
