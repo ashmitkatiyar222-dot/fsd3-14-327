@@ -33,3 +33,5 @@ any components include style
 1. externalC CSS (create class in index.css and used in component)
 2. Internal CSS(create property as a object like ```<button className="lal_button" style={{color:'red', margin:'15px'}}>Buy Now</button> ```then apply with style attribute and pass the object )
 3. Inline CSS (in this method we use two curly bracket with style attribut all the CSS property must be single word for example ```text-align``` become textAlign)
+
+APP.JSX SHOULD BE MINIMUM CODE 
